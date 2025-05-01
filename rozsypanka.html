@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ułóż zdanie z rozsypanki wyrazowej</title>
+  <link rel="stylesheet" href="style/CSS/styleZAD2.css">
+  <script src="style/JS/JS2.js" defer></script>
+</head>
+<body>
+  <h1>Ułóż zdanie z rozsypanki wyrazowej</h1>
+  <p>Przeciągnij słowa w odpowiedniej kolejności, aby stworzyć poprawne zdanie po polsku.</p>
+
+  <div id="sentenceContainer" class="sentence-container">
+    <!-- Тут будуть розміщені слоти для кожного речення -->
+  </div>
+  <div id="wordsContainer" class="container">
+    <!-- Слова для розкладання -->
+  </div>
+
+  <button id="checkBtn" onclick="checkSentence()">Sprawdź</button>
+  <p id="result"></p>
+
+  <div class="nav-buttons">
+    <button id="prevBtn" onclick="prevSentence()">← Poprzednie</button>
+    <button id="nextBtn" onclick="nextSentence()">Następne →</button>
+  </div>
+
+</body>
+</html>
