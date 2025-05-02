@@ -1,5 +1,5 @@
 const sentences = [
-    [["Ja", "napiszę", "esej", "jutro"], "Przyszły"],
+    [["Ja", "napiszę", "jutro", "esej"], "Przyszły"],
     [["My", "będziemy", "rozmawiać", "o książkach"], "Przyszły"],
     [["Ty", "pójdziesz", "na spacer", "po południu"], "Przyszły"],
     [["Ona", "poszła", "do", "apteki"], "Przeszły"],
@@ -95,7 +95,7 @@ const sentences = [
 ];
 
   const correctSentences = [
-    "Ja napiszę esej jutro",
+    "Ja napiszę jutro esej",
     "My będziemy rozmawiać o książkach",
     "Ty pójdziesz na spacer po południu",
     "Ona poszła do apteki",
