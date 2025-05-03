@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nauka Polskiego — Wybierz ćwiczenie</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #b3e5fc);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    h1 {
+      color: #01579b;
+      margin-bottom: 40px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .buttons a {
+      text-decoration: none;
+    }
+
+    .btn {
+      padding: 15px 30px;
+      font-size: 18px;
+      color: white;
+      background-color: #0288d1;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #0277bd;
+    }
+  </style>
+</head>
+<body>
+  <h1>Witaj! Wybierz ćwiczenie:</h1>
+  <div class="buttons">
+    <a href="sortowanie.html"><button class="btn">Sortowanie czasów</button></a>
+    <a href="rozsypanka.html"><button class="btn">Ułóż zdanie</button></a>
+    <a href="kartki.html"><button class="btn">Kartki</button></a>
+  </div><br>
+  <div><a href="tekst.html"><button class="btn">Tekst</button></a></div>
+  <br>
+  <div class="buttons"><a href="index.html"><button class="btn">Strona główna</button></a></div>
+</body>
+</html>

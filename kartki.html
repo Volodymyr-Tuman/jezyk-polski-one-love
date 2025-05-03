@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Гра Картки: UA → PL</title>
+  <style>
+    body{
+      background-color: #e6f0ff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .card-container {
+      perspective: 1000px;
+      margin: 10px;
+      padding: 10px;
+    }
+
+    .card {
+      width: 250px;
+      height: 150px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.6s;
+      cursor: pointer;
+    }
+
+    .card.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      border: 2px solid #003366;
+      font-size: 18px;
+      text-align: center;
+      padding: 10px;
+      box-sizing: border-box;
+      user-select: none;
+    }
+
+    .card-front {
+      background-color: #cce0ff;
+      color: #003366;
+      
+    }
+
+    .card-back {
+      background-color: #ffffff;
+      color: #003366;
+      transform: rotateY(180deg);
+    }
+  </style>
+</head>
+<body>
+
+<script>
+const ukrainianSentences = [
+  "Я купив нову книгу", "Вона любить читати фантастику", "Ми пішли на прогулянку в ліс", "Вони запізнились на зустріч", "Я шукаю свою зарядку",
+  "Він вивчає історію мистецтв", "Ми відпочивали на морі", "Моя мама працює в лікарні", "Ми замовили піцу на вечерю", "У нас велика родина",
+  "Ти любиш кататися на ковзанах?", "Я приготую вечерю для нас двох", "Ми чекаємо на автобус", "Маленька дівчинка грається з лялькою", "У нього гарна робота",
+  "Вона завжди допомагає з домашніми завданнями", "Ми їдемо до бабусі на вихідних", "Вони пішли на вечірку разом", "Я зустріну тебе біля кінотеатру", "У мене є хороші новини",
+  "Я сьогодні купив новий телефон", "Він дуже любить читати книги", "Ми подорожували по Україні", "Мій друг захоплюється фотографією", "Я навчаюся в університеті",
+  "Ми плануємо поїхати в гори", "Вона замовила страву в ресторані", "Вони працюють разом в одній компанії", "Ми часто ходимо в парк", "Я буду готувати обід на завтра",
+  "Це дуже цікава подорож", "Мій брат почав навчатися у школі", "Я забув ключі вдома", "У нас є маленький садок", "Ми обіцяли зустрітися завтра",
+  "Ми вирушаємо в подорож на наступному тижні", "Ти хочеш допомогти мені з цим проектом?", "Він проводить багато часу на роботі", "Я захоплююсь живописом", "Вона поїде з нами влітку",
+  "Ми відпочиваємо після роботи", "Моя бабуся приготувала смачний борщ", "Ми любимо разом дивитися фільми", "Я хочу навчитися грати на гітарі", "Мій друг працює програмістом",
+  "Ми намагаємося часто зустрічатися", "Вони поїхали в подорож на вихідних", "Це був дуже цікавий досвід", "Ми будемо святкувати день народження в ресторані", "Ти давно тут живеш?",
+  "Я обожнюю ходити в походи", "Ми купили нові меблі для дому", "Мій брат грає на фортепіано", "Ми займаємося спортом кожного дня", "Я не люблю рано вставати"
+];
+
+const polishSentences = [
+  "Kupiłem nową książkę", "Ona lubi czytać fantastykę", "Poszliśmy na spacer do lasu", "Oni spóźnili się na spotkanie", "Szukam mojego ładowarki",
+  "On uczy się historii sztuki", "Odpoczywaliśmy nad morzem", "Moja mama pracuje w szpitalu", "Zamówiliśmy pizzę na kolację", "Mamy dużą rodzinę",
+  "Lubisz jeździć na łyżwach?", "Przygotuję kolację dla nas dwoje", "Czekamy na autobus", "Mała dziewczynka bawi się lalką", "On ma dobrą pracę",
+  "Ona zawsze pomaga z zadaniami domowymi", "Jedziemy do babci w weekend", "Poszli razem na imprezę", "Spotkam cię przy kinie", "Mam dobre wiadomości",
+  "Dziś kupiłem nowy telefon", "On bardzo lubi czytać książki", "Podróżowaliśmy po Polsce", "Mój przyjaciel interesuje się fotografią", "Studiuję na uniwersytecie",
+  "Planujemy pojechać w góry", "Zamówiła danie w restauracji", "Oni pracują razem w jednej firmie", "Często chodzimy do parku", "Będę gotować obiad na jutro",
+  "To bardzo interesująca podróż", "Mój brat zaczął naukę w szkole", "Zgubiłem klucze w domu", "Mamy mały ogródek", "Obiecaliśmy spotkać się jutro",
+  "W przyszłym tygodniu jedziemy na wycieczkę", "Chcesz mi pomóc z tym projektem?", "On spędza dużo czasu w pracy", "Interesuję się malarstwem", "Ona pojedzie z nami latem",
+  "Odpoczywamy po pracy", "Moja babcia ugotowała pyszny barszcz", "Lubimy oglądać filmy razem", "Chcę nauczyć się grać na gitarze", "Mój przyjaciel jest programistą",
+  "Staramy się spotykać często", "Pojechali na wycieczkę w weekend", "To było bardzo interesujące doświadczenie", "Będziemy świętować urodziny w restauracji", "Dawno tu mieszkasz?",
+  "Uwielbiam chodzić na piesze wędrówki", "Kupiliśmy nowe meble do domu", "Mój brat gra na fortepianie", "Ćwiczymy codziennie", "Nie lubię wstawać wcześnie"
+];
+
+
+  ukrainianSentences.forEach((ua, index) => {
+    const container = document.createElement('div');
+    container.className = 'card-container';
+
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    const front = document.createElement('div');
+    front.className = 'card-face card-front';
+    front.textContent = ua;
+
+    const back = document.createElement('div');
+    back.className = 'card-face card-back';
+    back.textContent = polishSentences[index];
+
+    card.appendChild(front);
+    card.appendChild(back);
+
+    card.onclick = () => {
+      card.classList.toggle('flipped');
+    };
+
+    container.appendChild(card);
+    document.body.appendChild(container);
+  });
+  let currentIndex = 0;
+const cards = document.querySelectorAll('.card'); // Зберігаємо всі картки
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight') {
+    if (currentIndex < cards.length) {
+      // Перевертаємо поточну картку
+      cards[currentIndex].classList.toggle('flipped');
+      
+      // Переводимо до наступної картки
+      currentIndex++;
+      
+      // Якщо всі картки перевернуті, повертаємо індекс на першу картку
+      if (currentIndex === cards.length) {
+        currentIndex = 0;
+      }
+    }
+  }
+});
+
+</script>
+</body>
+</html>
