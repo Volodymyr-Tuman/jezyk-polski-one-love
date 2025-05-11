@@ -235,21 +235,22 @@ const polishSentences = [
     }
   };
 
-  // Клавіатура
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'ArrowRight') {
-      if (currentIndex < cards.length - 1) {
-        currentIndex++;
-        cards[currentIndex].classList.add('flipped');
-      }
-    } else if (event.key === 'ArrowLeft') {
-      if (currentIndex > 0) {
-        cards[currentIndex].classList.remove('flipped');
-        currentIndex--;
-        cards[currentIndex].classList.add('flipped');
-      }
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'ArrowRight') {
+    // Стрілка вправо — вперед
+    if (currentIndex < cards.length - 1) {
+      currentIndex++;
+      cards[currentIndex].classList.add('flipped');
     }
-  });
+  } else if (event.key === 'ArrowLeft') {
+    // Стрілка вліво — назад
+    if (currentIndex > 0) {
+      cards[currentIndex].classList.remove('flipped');
+      currentIndex--;
+      cards[currentIndex].classList.add('flipped');
+    }
+  }
+});
 </script>
 
   <div class="container-buttons">
