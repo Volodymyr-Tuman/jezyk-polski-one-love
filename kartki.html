@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Гра Картки: UA → PL</title>
+  <style>
+    body {
+      background-color: #f0f8ff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    header {
+      background-color: #003366;
+      color: white;
+      width: 100%;
+      padding: 20px 0;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      border-radius: 10px 10px 0 0;
+    }
+
+    /* Візуально кнопки залишаються, але не обов'язкові для використання */
+    .button-container {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .button {
+      background-color: #003366;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 18px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #00509e;
+    }
+
+    /* Контейнер для всієї сітки карток */
+#cards-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  max-width: 1200px;
+  width: 100%;
+}
+
+    .card-container {
+      perspective: 1000px;
+      margin: 10px;
+      padding: 10px;
+    }
+
+    .card {
+      width: 250px;
+      height: 150px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.8s;
+      cursor: pointer;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .card.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      font-size: 18px;
+      text-align: center;
+      padding: 10px;
+      box-sizing: border-box;
+      user-select: none;
+      font-weight: bold;
+    }
+
+    .card-front {
+      background-color: #cce0ff;
+      color: #003366;
+      border: 2px solid #003366;
+    }
+
+    .card-back {
+      background-color: #ffffff;
+      color: #003366;
+      transform: rotateY(180deg);
+      border: 2px solid #003366;
+    }
+
+        button {
+      padding: 12px 20px;
+      font-size: 16px;
+      background-color: #1976d2;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+    button:hover {
+      background-color: #1565c0;
+    }
+    .container-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .container-buttons a button {
+      width: auto;
+    }
+  </style>
+</head>
+<body>
+
+
+
+<div id="cards-wrapper"></div>
+
+<script>
+const ukrainianSentences = [
+  "Я пішов на ринок за свіжими овочами", "Він обожнює грати на гітарі", "Ми плануємо поїхати в гори на вихідні", "Вони забули свій рюкзак вдома", "Я шукаю нову книгу для читання",
+  "Вона працює в дитячому садку", "Ми збираємось на екскурсію в музей", "Ти хочеш приєднатися до нас?", "Вони поїхали на концерт цього вечора", "Я люблю кататися на велосипеді",
+  "Ми їдемо на дачу на вихідних", "Він часто ходить на тренування", "Ми зустрілися з друзями в кафе", "Моя сестра грає на фортепіано", "Ми працюємо над новим проектом",
+  "Ми поїхали до бабусі в село", "Я збираюся на шопінг", "Він обожнює грати у футбол", "Ми відвідали музей історії", "Я зайшов до магазину за хлібом",
+  "Моя тітка працює в бібліотеці", "Вони дуже люблять мандрувати", "Я планую поїхати до Києва на наступному тижні", "Ми зустрінемося в парку", "Ти хочеш побачити цей фільм?",
+  "Я працюю програмістом", "Ми намагаємось організувати свято", "Мій друг вивчає французьку мову", "Ми будемо святкувати Новий рік вдома", "Моя мама купила новий автомобіль",
+  "Це був чудовий день на природі", "Ми відпочиваємо влітку на морі", "Я дуже люблю читати детективи", "Ми спілкуємося з нашими родичами", "Ми поїхали на шашлики в ліс",
+  "Я не люблю вставати рано вранці", "Ми часто ходимо в кіно", "Ми збираємось поїхати в гори", "Вона купила новий одяг для роботи", "Я збираюся на прогулянку з собакою",
+  "Я навчаюся в університеті на факультеті інформатики", "Він допомагає мені з математикою", "Ми проводимо багато часу разом", "Ми часто граємо в настільні ігри", "Я захоплююсь живописом",
+  "Ми хочемо купити нові меблі для дому", "Я поїду на вихідних до бабусі", "Ми плануємо поїхати на море влітку", "Ми зустрінемося в парку", "Я люблю кататися на скейтборді",
+  "Ми разом дивимося серіал", "Ти забув свій зошит вдома", "Вона вивчає англійську мову", "Ми вечеряли на терасі", "Я люблю слухати музику в навушниках",
+  "Він часто готує смачну їжу", "Ми пішли до бібліотеки", "Ти вже зробив домашнє завдання?", "Вона замовила каву з молоком", "Я написав листа бабусі",
+  "Ми дивилися фільм жахів учора", "Він зустрів старого друга на вулиці", "Ми пішли гуляти після дощу", "Я забув ключі вдома", "Вона приготувала вечерю для всієї родини",
+  "Ми грали в футбол на шкільному подвір’ї", "Ти бачив новий фільм?", "Я вивчаю нові слова щодня", "Ми збираємо речі для подорожі", "Вона допомагає мамі на кухні",
+  "Він читає газету щоранку", "Ми зустріли вчителя в магазині", "Я написав повідомлення другу", "Вона подарувала мені книгу", "Ми слухали музику в машині",
+  "Я зняв відео з подорожі", "Ти готуєш щось смачне?", "Ми зробили фото на згадку", "Він малює пейзажі аквареллю", "Я вивчив нову пісню на гітарі",
+  "Ми грали в карти з друзями", "Вона співає в хорі", "Я купив нові кросівки", "Ми подивилися захід сонця", "Він зламав свій телефон",
+  "Я написав вірш", "Ми збираємо гриби в лісі", "Ти вже їв сніданок?", "Вона читає цікаву статтю", "Я залишив парасольку в автобусі",
+  "Ми слухаємо подкасти разом", "Він тренується щодня", "Я бачив веселку", "Ми йдемо в магазин за продуктами", "Вона шиє плаття самостійно",
+  "Я планую написати лист", "Ми граємо в шахи", "Він мріє про подорож до Італії", "Ти записав це в блокнот?", "Ми зробили домашнє завдання вчасно"
+];
+
+const polishSentences = [
+  "Poszedłem na targ po świeże warzywa", "On uwielbia grać na gitarze", "Planujemy pojechać w góry na weekend", "Oni zapomnieli plecak w domu", "Szukam nowej książki do przeczytania",
+  "Ona pracuje w przedszkolu", "Idziemy na wycieczkę do muzeum", "Chcesz do nas dołączyć?", "Pojechali na koncert tego wieczoru", "Lubię jeździć na rowerze",
+  "Jedziemy na działkę w weekend", "On często chodzi na treningi", "Spotkaliśmy się z przyjaciółmi w kawiarni", "Moja siostra gra na fortepianie", "Pracujemy nad nowym projektem",
+  "Pojechaliśmy do babci na wieś", "Zamierzam na zakupy", "On uwielbia grać w piłkę nożną", "Odwiedziliśmy muzeum historii", "Poszedłem do sklepu po chleb",
+  "Moja ciocia pracuje w bibliotece", "Bardzo lubią podróżować", "Planuję pojechać do Kijowa w przyszłym tygodniu", "Spotkamy się w parku", "Chcesz zobaczyć ten film?",
+  "Pracuję jako programista", "Staramy się zorganizować imprezę", "Mój przyjaciel uczy się języka francuskiego", "Będziemy świętować Nowy Rok w domu", "Moja mama kupiła nowy samochód",
+  "To był cudowny dzień na świeżym powietrzu", "Odpoczywamy latem nad morzem", "Bardzo lubię czytać kryminały", "Rozmawiamy z naszymi krewnymi", "Pojechaliśmy na grilla do lasu",
+  "Nie lubię wstawać wcześnie rano", "Często chodzimy do kina", "Zamierzamy pojechać w góry", "Kupiła nową odzież do pracy", "Zamierzam na spacer z psem",
+  "Studiuję na uniwersytecie na kierunku informatyka", "Pomaga mi w matematyce", "Spędzamy dużo czasu razem", "Często gramy w gry planszowe", "Interesuję się malarstwem",
+  "Chcemy kupić nowe meble do domu", "Po weekendzie pojadę do babci", "Planujemy pojechać nad morze latem", "Przygotowujemy niespodziankę dla naszego przyjaciela", "Robię zadanie domowe",
+  "Oglądamy razem serial", "Zapomniałeś zeszytu w domu", "Ona uczy się języka angielskiego", "Jedliśmy kolację na tarasie", "Lubię słuchać muzyki na słuchawkach",
+  "On często gotuje smaczne jedzenie", "Poszliśmy do biblioteki", "Czy już zrobiłeś pracę domową?", "Zamówiła kawę z mlekiem", "Napisałem list do babci",
+  "Wczoraj oglądaliśmy horror", "Spotkał starego przyjaciela na ulicy", "Poszliśmy na spacer po deszczu", "Zapomniałem kluczy w domu", "Przygotowała kolację dla całej rodziny",
+  "Graliśmy w piłkę na szkolnym boisku", "Widziałeś nowy film?", "Codziennie uczę się nowych słów", "Pakujemy rzeczy na podróż", "Pomaga mamie w kuchni",
+  "Czyta gazetę każdego ranka", "Spotkaliśmy nauczyciela w sklepie", "Napisałem wiadomość do przyjaciela", "Dała mi książkę w prezencie", "Słuchaliśmy muzyki w samochodzie",
+  "Nagrałem film z podróży", "Gotujesz coś smacznego?", "Zrobiliśmy pamiątkowe zdjęcie", "Maluje pejzaże akwarelą", "Nauczyłem się nowej piosenki na gitarze",
+  "Graliśmy w karty z przyjaciółmi", "Śpiewa w chórze", "Kupiłem nowe buty sportowe", "Oglądaliśmy zachód słońca", "Zepsuł swój telefon",
+  "Napisałem wiersz", "Zbieramy grzyby w lesie", "Czy już zjadłeś śniadanie?", "Czyta ciekawy artykuł", "Zostawiłem parasol w autobusie",
+  "Słuchamy razem podcastów", "On codziennie trenuje", "Widziałem tęczę", "Idziemy do sklepu po zakupy", "Szyje sukienkę samodzielnie",
+  "Planuję napisać list", "Gramy w szachy", "Marzy o podróży do Włoch", "Zapisałeś to w notesie?", "Zrobiliśmy pracę domową na czas"
+];
+
+
+  let currentIndex = 0;
+  const cards = [];
+
+  // Генерація карток
+  ukrainianSentences.forEach((ua, index) => {
+    const container = document.createElement('div');
+    container.className = 'card-container';
+
+    const card = document.createElement('div');
+    card.className = 'card';
+    cards.push(card);
+
+    const front = document.createElement('div');
+    front.className = 'card-face card-front';
+    front.textContent = ua;
+
+    const back = document.createElement('div');
+    back.className = 'card-face card-back';
+    back.textContent = polishSentences[index];
+
+    card.appendChild(front);
+    card.appendChild(back);
+
+    card.onclick = () => {
+      card.classList.toggle('flipped');
+    };
+
+    container.appendChild(card);
+    document.getElementById('cards-wrapper').appendChild(container);
+  });
+
+  // Кнопки
+  document.getElementById('next').onclick = () => {
+    if (currentIndex < cards.length - 1) {
+      currentIndex++;
+      cards[currentIndex].classList.add('flipped');
+    }
+  };
+
+  document.getElementById('prev').onclick = () => {
+    if (currentIndex > 0) {
+      cards[currentIndex].classList.remove('flipped');
+      currentIndex--;
+      cards[currentIndex].classList.add('flipped');
+    }
+  };
+
+  // Клавіатура
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowRight') {
+      if (currentIndex < cards.length - 1) {
+        currentIndex++;
+        cards[currentIndex].classList.add('flipped');
+      }
+    } else if (event.key === 'ArrowLeft') {
+      if (currentIndex > 0) {
+        cards[currentIndex].classList.remove('flipped');
+        currentIndex--;
+        cards[currentIndex].classList.add('flipped');
+      }
+    }
+  });
+</script>
+
+  <div class="container-buttons">
+    <a href="index.html"><button>Strona główna</button></a>
+    <a href="cwiczenie.html"><button>Powrót</button></a>
+  </div>
+</body>
+</html>
