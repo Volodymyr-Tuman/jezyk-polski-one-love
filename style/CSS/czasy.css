@@ -1,0 +1,126 @@
+    body {
+      margin: 0;
+      font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+      background: linear-gradient(145deg, #e3f2fd, #bbdefb);
+      color: #0d47a1;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1976d2, #2196f3);
+      color: white;
+      padding: 60px 20px 40px;
+      text-align: center;
+      border-bottom: 6px solid #0d47a1;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    header h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    header p {
+      font-size: 1.3em;
+      opacity: 0.9;
+    }
+
+    main {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px 35px;
+      margin-bottom: 35px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .section:hover {
+      transform: translateY(-6px);
+    }
+
+    .section h2 {
+      font-size: 1.8em;
+      margin-top: 0;
+      color: #0d47a1;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: #e3f2fd;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      border: 1px solid #90caf9;
+      text-align: left;
+    }
+
+    th {
+      background-color: #bbdefb;
+      color: #0d47a1;
+    }
+
+    .highlight {
+      background-color: #e1f5fe;
+      border-left: 6px solid #0288d1;
+      padding: 10px 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    .note {
+      background-color: #ef5350;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 12px;
+      margin-top: 20px;
+      font-weight: 600;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: #1565c0;
+      color: white;
+      font-size: 0.95em;
+      border-top: 4px solid #0d47a1;
+      margin-top: 60px;
+    }
+    nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  background: rgba(25, 118, 210, 0.85);
+  padding: 14px 20px;
+  backdrop-filter: blur(1px);
+  top: 0;
+  z-index: 10;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 30px;
+  transition: all 0.25s ease-in-out;
+}
+
+nav a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
