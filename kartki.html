@@ -121,30 +121,30 @@
 
 <script>
   const ukrainianSentences = [
-    "Я пішов на ринок за свіжими овочами", "Він обожнює грати на гітарі", "Ми плануємо поїхати в гори на вихідні", "Вони забули свій рюкзак вдома", "Я шукаю нову книгу для читання",
-    "Вона працює в дитячому садку", "Ми збираємось на екскурсію в музей", "Ти хочеш приєднатися до нас?", "Вони поїхали на концерт цього вечора", "Я люблю кататися на велосипеді",
-    "Ми їдемо на дачу на вихідних", "Він часто ходить на тренування", "Ми зустрілися з друзями в кафе", "Моя сестра грає на фортепіано", "Ми працюємо над новим проектом",
-    "Ми поїхали до бабусі в село", "Я збираюся на шопінг", "Він обожнює грати у футбол", "Ми відвідали музей історії", "Я зайшов до магазину за хлібом",
-    "Моя тітка працює в бібліотеці", "Вони дуже люблять мандрувати", "Я планую поїхати до Києва на наступному тижні", "Ми зустрінемося в парку", "Ти хочеш побачити цей фільм?",
-    "Я працюю програмістом", "Ми намагаємось організувати свято", "Мій друг вивчає французьку мову", "Ми будемо святкувати Новий рік вдома", "Моя мама купила новий автомобіль",
-    "Це був чудовий день на природі", "Ми відпочиваємо влітку на морі", "Я дуже люблю читати детективи", "Ми спілкуємося з нашими родичами", "Ми поїхали на шашлики в ліс",
-    "Я не люблю вставати рано вранці", "Ми часто ходимо в кіно", "Ми збираємось поїхати в гори", "Вона купила новий одяг для роботи", "Я збираюся на прогулянку з собакою",
-    "Я навчаюся в університеті на факультеті інформатики", "Він допомагає мені з математикою", "Ми проводимо багато часу разом", "Ми часто граємо в настільні ігри", "Я захоплююсь живописом",
-    "Ми хочемо купити нові меблі для дому", "Я поїду на вихідних до бабусі", "Ми плануємо поїхати на море влітку", "Ми зустрінемося в парку", "Я люблю кататися на скейтборді"
-  ];
+  "Я замовив піцу на вечерю", "Вона читає цікаву статтю про науку", "Ми грали в футбол після школи", "Вони дивилися фільм учора ввечері", "Я написав листа бабусі",
+  "Моя сестра пішла на йогу", "Ми слухали музику в парку", "Ти вже зробив домашнє завдання?", "Вони танцювали всю ніч", "Я навчився готувати борщ",
+  "Ми збираємось у похід цієї суботи", "Він купив новий смартфон", "Я побачив веселку після дощу", "Ми прибирали квартиру вранці", "Я зробив фотографію заходу сонця",
+  "Вона пішла в бібліотеку за книжкою", "Ми відвідали нову виставку в галереї", "Я замовив каву без цукру", "Вони каталися на ковзанах у парку", "Я розповів жарт друзям",
+  "Ми грали на гітарі біля вогнища", "Я прокинувся дуже рано", "Ми приготували смачну вечерю", "Ти бачив мій рюкзак?", "Я вивчаю німецьку мову",
+  "Моя мама дивиться кулінарне шоу", "Ми плануємо вечірку на вихідні", "Я отримав листа від друга з-за кордону", "Ми гуляли на березі річки", "Вона малювала портрет кота",
+  "Я скачав нову гру на телефон", "Ми співали пісні в машині", "Він зламав навушники", "Я писав повідомлення на уроці", "Ми годували качок у парку",
+  "Вона запізнилась на зустріч", "Я знайшов ключі під ліжком", "Ми розв'язали складну задачу", "Ти пригадав її ім’я?", "Він лагодив велосипед",
+  "Ми плавали в озері", "Я навчився нової пісні", "Вона розповідала цікаву історію", "Ми побудували хатку на дереві", "Я натиснув не ту кнопку",
+  "Ми заблукали в лісі", "Я намалював картину аквареллю", "Вони прикрашали кімнату на свято", "Ти приготував сніданок?", "Ми обговорювали книгу"
+];
 
-  const polishSentences = [
-    "Poszedłem na targ po świeże warzywa", "On uwielbia grać na gitarze", "Planujemy pojechać w góry na weekend", "Oni zapomnieli plecak w domu", "Szukam nowej książki do przeczytania",
-    "Ona pracuje w przedszkolu", "Idziemy na wycieczkę do muzeum", "Chcesz do nas dołączyć?", "Pojechali na koncert tego wieczoru", "Lubię jeździć na rowerze",
-    "Jedziemy na działkę w weekend", "On często chodzi na treningi", "Spotkaliśmy się z przyjaciółmi w kawiarni", "Moja siostra gra na fortepianie", "Pracujemy nad nowym projektem",
-    "Pojechaliśmy do babci na wieś", "Zamierzam na zakupy", "On uwielbia grać w piłkę nożną", "Odwiedziliśmy muzeum historii", "Poszedłem do sklepu po chleb",
-    "Moja ciocia pracuje w bibliotece", "Bardzo lubią podróżować", "Planuję pojechać do Kijowa w przyszłym tygodniu", "Spotkamy się w parku", "Chcesz zobaczyć ten film?",
-    "Pracuję jako programista", "Staramy się zorganizować imprezę", "Mój przyjaciel uczy się języka francuskiego", "Będziemy świętować Nowy Rok w domu", "Moja mama kupiła nowy samochód",
-    "To był cudowny dzień na świeżym powietrzu", "Odpoczywamy latem nad morzem", "Bardzo lubię czytać kryminały", "Rozmawiamy z naszymi krewnymi", "Pojechaliśmy na grilla do lasu",
-    "Nie lubię wstawać wcześnie rano", "Często chodzimy do kina", "Zamierzamy pojechać w góry", "Kupiła nową odzież do pracy", "Zamierzam na spacer z psem",
-    "Studiuję na uniwersytecie na kierunku informatyka", "Pomaga mi w matematyce", "Spędzamy dużo czasu razem", "Często gramy w gry planszowe", "Interesuję się malarstwem",
-    "Chcemy kupić nowe meble do domu", "Po weekendzie pojadę do babci", "Planujemy pojechać nad morze latem", "Przygotowujemy niespodziankę dla naszego przyjaciela", "Robię zadanie domowe"
-  ];
+const polishSentences = [
+  "Zamówiłem pizzę na kolację", "Ona czyta ciekawy artykuł o nauce", "Graliśmy w piłkę po szkole", "Oglądali film wczoraj wieczorem", "Napisałem list do babci",
+  "Moja siostra poszła na jogę", "Słuchaliśmy muzyki w parku", "Czy odrobiłeś już pracę domową?", "Tańczyli całą noc", "Nauczyłem się gotować barszcz",
+  "Wybieramy się na wędrówkę w tę sobotę", "Kupił nowy smartfon", "Zobaczyłem tęczę po deszczu", "Sprzątaliśmy mieszkanie rano", "Zrobiłem zdjęcie zachodu słońca",
+  "Poszła do biblioteki po książkę", "Odwiedziliśmy nową wystawę w galerii", "Zamówiłem kawę bez cukru", "Jeździli na łyżwach w parku", "Opowiedziałem dowcip znajomym",
+  "Graliśmy na gitarze przy ognisku", "Obudziłem się bardzo wcześnie", "Przygotowaliśmy pyszną kolację", "Widziałeś mój plecak?", "Uczę się języka niemieckiego",
+  "Moja mama ogląda program kulinarny", "Planujemy imprezę na weekend", "Dostałem list od przyjaciela z zagranicy", "Spacerowaliśmy nad rzeką", "Ona narysowała portret kota",
+  "Pobrałem nową grę na telefon", "Śpiewaliśmy piosenki w samochodzie", "Zepsuł słuchawki", "Pisałem wiadomość na lekcji", "Karmiliśmy kaczki w parku",
+  "Spóźniła się na spotkanie", "Znalazłem klucze pod łóżkiem", "Rozwiązaliśmy trudne zadanie", "Przypomniałeś sobie jej imię?", "Naprawiał rower",
+  "Pływaliśmy w jeziorze", "Nauczyłem się nowej piosenki", "Ona opowiadała ciekawą historię", "Zbudowaliśmy domek na drzewie", "Kliknąłem nie ten przycisk",
+  "Zgubiliśmy się w lesie", "Namalowałem obraz akwarelą", "Ozdabiali pokój na święto", "Przygotowałeś śniadanie?", "Dyskutowaliśmy o książce"
+];
 
   let currentIndex = 0;
   const cards = [];
