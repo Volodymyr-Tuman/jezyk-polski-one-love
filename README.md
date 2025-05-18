@@ -1,1 +1,0 @@
-# jezyk-polski-one-love
