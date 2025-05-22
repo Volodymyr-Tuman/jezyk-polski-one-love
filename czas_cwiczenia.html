@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sprawdź słowo</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #d0e8ff, #eef7ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .card {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 10px 25px rgba(0, 123, 255, 0.2);
+      max-width: 550px;
+      width: 100%;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 1.5rem;
+      color: #023e8a;
+    }
+    input {
+      width: 100%;
+      padding: 0.85rem;
+      font-size: 1rem;
+      border: 2px solid #90e0ef;
+      border-radius: 10px;
+      outline: none;
+    }
+    input:focus { border-color: #0077b6; }
+    button {
+      background: #00b4d8;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin: 0.5rem;
+    }
+    button:hover { background: #0077b6; }
+    .result {
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    .correct { color: #38b000; }
+    .wrong { color: #d00000; }
+    #pronounDisplay {
+      color: #0077b6;
+      font-weight: 900;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2 id="task">
+      Слово "читати" у теперішньому часі для <span id="pronounDisplay">ja</span>:
+    </h2>
+    <input type="text" id="userInput" placeholder="Wpisz po polsku..." />
+    <div>
+      <button onclick="checkAnswer()" id="checkBtn">Sprawdź</button>
+      <button onclick="nextWord()" id="nextBtn" style="display:none;">Następne słowo</button>
+    </div>
+    <div id="feedback" class="result"></div>
+  <a href="cwiczenie.html"><button>Powrót</button></a>
+  </div>
+
+  <script>
+const tasks = [
+  ["говорити", "mówiłam", "Przeszły", "ja"],
+  ["писати", "piszesz", "Teraźniejszy", "ty"],
+  ["читати", "czytam", "Teraźniejszy", "ja"],
+  ["бігти", "będziesz biec", "Przyszły", "ty"],
+  ["спати", "spał", "Przeszły", "on"],
+  ["їсти", "jesz", "Teraźniejszy", "ty"],
+  ["гуляти", "będę spacerować", "Przyszły", "ja"],
+  ["слухати", "słuchała", "Przeszły", "ona"],
+  ["малювати", "maluję", "Teraźniejszy", "ja"],
+  ["ловити", "łapał", "Przeszły", "on"],
+  ["нести", "niosła", "Przeszły", "ona"],
+  ["дивитися", "oglądam", "Teraźniejszy", "ja"],
+  ["пити", "pijesz", "Teraźniejszy", "ty"],
+  ["грати", "grałam", "Przeszły", "ja"],
+  ["їхати", "pojechał", "Przeszły", "on"],
+  ["носити", "nosiła", "Przeszły", "ona"],
+  ["вчити", "uczę", "Teraźniejszy", "ja"],
+  ["думати", "myślisz", "Teraźniejszy", "ty"],
+  ["мити", "myję", "Teraźniejszy", "ja"],
+  ["співати", "śpiewał", "Przeszły", "on"],
+  ["танцювати", "tańczysz", "Teraźniejszy", "ty"],
+  ["варити", "gotował", "Przeszły", "on"],
+  ["різати", "tniesz", "Teraźniejszy", "ty"],
+  ["жити", "żyję", "Teraźniejszy", "ja"],
+  ["лежати", "leżał", "Przeszły", "on"],
+  ["плакати", "płaczę", "Teraźniejszy", "ja"],
+  ["відповідати", "odpowiadał", "Przeszły", "on"],
+  ["ходити", "chodzisz", "Teraźniejszy", "ty"],
+  ["пекти", "piecze", "Teraźniejszy", "on"],
+  ["брати", "brałam", "Przeszły", "ja"],
+  ["сидіти", "siedziała", "Przeszły", "ona"],
+  ["хотіти", "chciałeś", "Przeszły", "ty"],
+  ["запитувати", "pytasz", "Teraźniejszy", "ty"],
+  ["відкривати", "otwiera", "Teraźniejszy", "on"],
+  ["закривати", "zamykała", "Przeszły", "ona"],
+  ["гледіти", "pilnowałeś", "Przeszły", "ty"],
+  ["робити", "robiłam", "Przeszły", "ja"],
+  ["вмикати", "włączasz", "Teraźniejszy", "ty"],
+  ["вимикати", "wyłącza", "Teraźniejszy", "on"],
+  ["знаходити", "znalazłeś", "Przeszły", "ty"],
+  ["відчувати", "czuję", "Teraźniejszy", "ja"],
+  ["вставати", "wstała", "Przeszły", "ona"],
+  ["допомагати", "pomogłem", "Przeszły", "ja"],
+  ["вибирати", "wybierasz", "Teraźniejszy", "ty"],
+  ["чекати", "czekała", "Przeszły", "ona"],
+  ["бачити", "widzę", "Teraźniejszy", "ja"],
+  ["любити", "kochasz", "Teraźniejszy", "ty"],
+  ["ховати", "chował", "Przeszły", "on"],
+  ["обіймати", "przytulił", "Przeszły", "on"],
+  ["цілувати", "całowała", "Przeszły", "ona"],
+  ["виконувати", "wykonała", "Przeszły", "ona"],
+  ["вигравати", "wygrałem", "Przeszły", "ja"],
+  ["програвати", "przegrałeś", "Przeszły", "ty"],
+  ["плавати", "płynę", "Teraźniejszy", "ja"],
+  ["здавати", "zdawała", "Przeszły", "ona"],
+  ["перевіряти", "sprawdzasz", "Teraźniejszy", "ty"],
+  ["записувати", "zapisuję", "Teraźniejszy", "ja"],
+  ["чистити", "czyszczę", "Teraźniejszy", "ja"],
+  ["будити", "budziłeś", "Przeszły", "ty"],
+  ["сіяти", "siejesz", "Teraźniejszy", "ty"],
+  ["орати", "orałem", "Przeszły", "ja"],
+  ["клеїти", "kleję", "Teraźniejszy", "ja"],
+  ["друкувати", "drukujesz", "Teraźniejszy", "ty"],
+  ["годувати", "karmił", "Przeszły", "on"],
+  ["копати", "kopałam", "Przeszły", "ja"],
+  ["будувати", "buduję", "Teraźniejszy", "ja"],
+  ["перемагати", "zwyciężyłeś", "Przeszły", "ty"],
+  ["збирати", "zbierała", "Przeszły", "ona"],
+  ["закінчувати", "kończę", "Teraźniejszy", "ja"],
+  ["шити", "szyłeś", "Przeszły", "ty"],
+  ["забувати", "zapomniała", "Przeszły", "ona"],
+  ["пам’ятати", "pamiętasz", "Teraźniejszy", "ty"],
+  ["відправляти", "wysyła", "Teraźniejszy", "on"],
+  ["отримувати", "otrzymałem", "Przeszły", "ja"],
+  ["дарувати", "dała", "Przeszły", "ona"],
+  ["віддавати", "oddajesz", "Teraźniejszy", "ty"],
+  ["тягнути", "ciągnął", "Przeszły", "on"],
+  ["штовхати", "pcham", "Teraźniejszy", "ja"],
+  ["зачиняти", "zamknął", "Przeszły", "on"],
+  ["світити", "świecisz", "Teraźniejszy", "ty"],
+  ["горіти", "palił", "Przeszły", "on"],
+  ["рухати", "ruszam", "Teraźniejszy", "ja"],
+  ["лити", "lałeś", "Przeszły", "ty"],
+  ["знати", "wiedział", "Przeszły", "on"],
+  ["кричати", "krzyczałam", "Przeszły", "ja"],
+  ["читати", "będziesz czytać", "Przyszły", "ty"],
+  ["готувати", "gotuję", "Teraźniejszy", "ja"],
+  ["пакувати", "pakowała", "Przeszły", "ona"],
+  ["ламати", "łamałeś", "Przeszły", "ty"],
+  ["рвати", "rwę", "Teraźniejszy", "ja"],
+  ["відкривати", "będziesz otwierać", "Przyszły", "ty"],
+  ["будувати", "będę budować", "Przyszły", "ja"]
+];
+
+
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    function detectGenderByCorrectForm(form) {
+      form = form.toLowerCase().trim();
+      if (/(liśmy|liście|li)$/.test(form)) return "множина (чол.)";
+      if (/(łyśmy|łyście|ły)$/.test(form)) return "множина (жін.)";
+      if (/(łem|łeś|ł)$/.test(form)) return "чол.рід";
+      if (/(łam|łaś|ła)$/.test(form)) return "жін.рід";
+      if (/ło$/.test(form)) return "серед.рід";
+      return "невідомо";
+    }
+
+    let currentIndex = 0;
+
+    function updateTaskTitle(infinitive, tense, pronoun, correctForm) {
+      let label = `${infinitive}" у ${tense.toLowerCase()} часі для `;
+      let genderInfo = "";
+
+      if (tense === "Przeszły") {
+        const gender = detectGenderByCorrectForm(correctForm);
+        genderInfo = ` (${gender})`;
+      }
+
+      document.getElementById("task").innerHTML =
+        `Слово "${label}<span id="pronounDisplay">${pronoun}${genderInfo}</span>:`;
+    }
+
+    function checkAnswer() {
+      const userInput = document.getElementById("userInput").value.toLowerCase().trim();
+      const [infinitive, correctForm, tense, pronoun] = tasks[currentIndex];
+      const correct = correctForm.toLowerCase().trim();
+
+      if (userInput === correct) {
+        document.getElementById("feedback").textContent = "Правильно!";
+        document.getElementById("feedback").className = "result correct";
+        document.getElementById("checkBtn").style.display = "none";
+        document.getElementById("nextBtn").style.display = "inline-block";
+      } else {
+        document.getElementById("feedback").textContent = "Неправильно. Спробуй ще.";
+        document.getElementById("feedback").className = "result wrong";
+      }
+
+      updateTaskTitle(infinitive, tense, pronoun, correctForm);
+    }
+
+    function nextWord() {
+      currentIndex = (currentIndex + 1) % tasks.length;
+      const [infinitive, correctForm, tense, pronoun] = tasks[currentIndex];
+      document.getElementById("userInput").value = "";
+      document.getElementById("feedback").textContent = "";
+      document.getElementById("checkBtn").style.display = "inline-block";
+      document.getElementById("nextBtn").style.display = "none";
+      updateTaskTitle(infinitive, tense, pronoun, correctForm);
+    }
+
+    window.onload = () => {
+      shuffleArray(tasks);
+      const [infinitive, correctForm, tense, pronoun] = tasks[currentIndex];
+      updateTaskTitle(infinitive, tense, pronoun, correctForm);
+    };
+  </script>
+</body>
+</html>
