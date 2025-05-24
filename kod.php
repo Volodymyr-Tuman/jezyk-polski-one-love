@@ -1,8 +1,8 @@
 <?php
-$host = "localhost";        // або IP-адреса хостингу бази
-$dbname = "your_db_name";
-$username = "your_db_user";
-$password = "your_db_password";
+$host = "94.198.51.12";        // або IP-адреса хостингу бази
+$dbname = "gs92839";
+$username = "gs92839";
+$password = "JoMY9KrS9C";
 
 $conn = new mysqli($host, $username, $password, $dbname);
 
