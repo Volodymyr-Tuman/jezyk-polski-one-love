@@ -1,14 +1,14 @@
   const correctAnswers = {
-  q1: "b", // Czytając przewodniki i filmy dokumentalne
-  q2: "c", // Pociągiem
-  q3: "b", // Wysoki Zamek
-  q4: "c", // Pielmieni i gorącą czekoladę
-  q5: "b", // Ukryte podziemia i muzeum aptekarstwa
-  q6: "c", // Pełna magii i sztuki ulicznej
-  q7: "c", // Drohobycz
-  q8: "c", // Bo podróż do Lwowa była inspirująca
-  q9: "b", // Oglądał artystów malujących na ulicach
-  q10: "c" // Odczuł inspirację i zauroczenie miastem
+    q1: "b", // Bo dni są długie, mimo zmiennej pogody
+    q2: "b", // Dotarcie do miejsc niedostępnych dla zwykłych aut
+    q3: "c", // Gullfoss, Strokkur i Þingvellir
+    q4: "c", // Gorącą rzekę Reykjadalur
+    q5: "a", // Historie o elfach i trollach
+    q6: "c", // Jako wymagającą, dziką i niedostępną krainę
+    q7: "b", // Kontrasty między naturą – ogień i lód
+    q8: "a", // Zrozumiał, że warto podróżować wolniej i uważniej
+    q9: "b", // Czarne plaże Vik
+    q10: "b" // Wyprawę zimą, by zobaczyć zorzę polarną
   };
 
     function checkAnswers() {
