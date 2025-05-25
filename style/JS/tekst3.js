@@ -1,14 +1,14 @@
 const correctAnswers = {
-  q1: "b", // Wczesnym rankiem
-  q2: "b", // Rybaków wyciągających sieci z rybami
-  q3: "c", // Płynący inaczej, pełen historii
-  q4: "a", // Między spokojem ranka a zgiełkiem turystów
-  q5: "a", // Zanurzył dłonie w wodzie
-  q6: "b", // Metaforę zmian i nadziei
-  q7: "b", // Ukojenie i świeżość
-  q8: "b", // Jako dźwięk kołyszący myśli
-  q9: "b", // Byli zmęczeni, ale zadowoleni z połowu
-  q10: "b" // Czas nad morzem daje ukojenie i inspirację
+  q1: "b", // Do wykrywania zmian chorobowych
+  q2: "b", // Analiza danych medycznych
+  q3: "c", // W precyzyjnym wykonywaniu zabiegów
+  q4: "c", // Analizuje związki chemiczne
+  q5: "b", // Odpowiedzialne i etyczne wdrażanie
+  q6: "c", // Utrata prywatności i błędy systemu
+  q7: "c", // Wczesne wykrywanie chorób
+  q8: "b", // Być partnerem wspierającym lekarza
+  q9: "b", // Skraca czas rekonwalescencji
+  q10: "c" // Jako trwały i pozytywny trend
 };
 
     function checkAnswers() {
