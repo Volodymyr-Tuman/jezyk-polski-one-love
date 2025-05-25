@@ -70,17 +70,17 @@
       <button onclick="nextWord()" id="nextBtn" style="display:none;">Następne słowo</button>
     </div>
     <div id="feedback" class="result"></div>
-  <a href="cwiczenie.html"><button>Powrót</button></a>
+    <a href="cwiczenie.html"><button>Powrót</button></a>
   </div>
 
   <script>
-const tasks = [
-  // === Teraźniejszy (Теперішній) ===
-  ["їсти", "jem", "Teraźniejszy", "ja"],
-  ["писати", "piszę", "Teraźniejszy", "ja"],
-
-];
-
+    const tasks = [
+      ["czytać", "czytam", "Teraźniejszy", "ja"],
+      ["jeść", "jem", "Teraźniejszy", "ja"],
+      ["pisać", "piszę", "Teraźniejszy", "ja"],
+      ["mówić", "mówię", "Teraźniejszy", "ja"],
+      ["robić", "robię", "Teraźniejszy", "ja"]
+    ];
 
     function shuffleArray(array) {
       for (let i = array.length - 1; i > 0; i--) {
@@ -133,7 +133,18 @@ const tasks = [
     }
 
     function nextWord() {
-      currentIndex = (currentIndex + 1) % tasks.length;
+      currentIndex++;
+
+      if (currentIndex >= tasks.length) {
+        document.getElementById("task").innerHTML = `Вправа завершена ✅`;
+        document.getElementById("userInput").style.display = "none";
+        document.getElementById("checkBtn").style.display = "none";
+        document.getElementById("nextBtn").style.display = "none";
+        document.getElementById("feedback").textContent = "Молодець! Ти виконав(ла) всі завдання.";
+        document.getElementById("feedback").className = "result correct";
+        return;
+      }
+
       const [infinitive, correctForm, tense, pronoun] = tasks[currentIndex];
       document.getElementById("userInput").value = "";
       document.getElementById("feedback").textContent = "";
