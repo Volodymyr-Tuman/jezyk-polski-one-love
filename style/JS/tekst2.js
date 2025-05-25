@@ -5,7 +5,7 @@ const correctAnswers = {
   q4: "c", // Dzięki tańcowi pszczelemu
   q5: "d", // Syrop kukurydziany
   q6: "a", // Sadzenie roślin miododajnych
-  q7: "c", // Pomagają w komunikacji wewnętrznej
+  q7: "c", // Pomagają w omunikacji wewnętrznej
   q8: "a", // Nie produkują miodu i żyją pojedynczo
   q9: "c", // Zaburzy się cały łańcuch pokarmowy
   q10: "b" // Sadzić rośliny przyjazne pszczołom
