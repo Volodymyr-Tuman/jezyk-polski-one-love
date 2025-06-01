@@ -1,28 +1,29 @@
 const ukrainianSentences = [
-  "Я прочитав цікаву книгу", "Вона зустріла подругу в кафе", "Ми приготували вечерю разом", "Вони забрали документи з офісу", "Я відправив листа електронкою",
-  "Тато відремонтував велосипед", "Ми замовили піцу додому", "Ти бачив новий фільм?", "Діти зробили домашнє завдання", "Я відкрив вікно в кімнаті",
-  "Ми побували в горах", "Він залишив телефон у машині", "Я вимкнув світло", "Ми спекли торт на свято", "Я зробив фото заходу сонця",
-  "Сестра принесла апельсини", "Ми слухали радіо в дорозі", "Я купив новий рюкзак", "Вони грали в футбол на стадіоні", "Я пояснив їм завдання",
-  "Ми дивилися серіал ввечері", "Я прокинувся о сьомій", "Ми зібрали речі в подорож", "Ти бачив наш сад?", "Я вивчаю італійську мову",
-  "Мама приготувала сніданок", "Ми запланували поїздку", "Я отримав листівку з-за кордону", "Ми гуляли старим містом", "Вона малювала на планшеті",
-  "Я встановив нову програму", "Ми співали караоке", "Він розбив чашку", "Я писав есе для школи", "Ми нагодували кота",
-  "Вона прийшла о восьмій", "Я знайшов ключі під столом", "Ми розв’язали задачу", "Ти згадав її прізвище?", "Він полагодив годинник",
-  "Ми плавали в басейні", "Я вивчив нову пісню", "Вона розповіла цікаву історію", "Ми побудували намет", "Я натиснув на дзвінок",
-  "Ми заблукали в місті", "Я намалював портрет", "Вони прикрасили ялинку", "Ти зробив каву?", "Ми обговорили важливі питання"
+  "Я зустрів старого друга", "Вона написала мені листа", "Ми зняли квартиру в центрі", "Вони приїхали надто пізно", "Я почув дивний звук",
+  "Сестра запізнилася на урок", "Ми залишили куртки в авто", "Ти відкрив правильні двері?", "Діти подивилися мультик", "Я приготував чай з лимоном",
+  "Ми прибрали квартиру", "Він отримав нову роботу", "Я закінчив читати статтю", "Ми провели день на природі", "Я сфотографував будівлю",
+  "Бабуся принесла теплі пледи", "Ми обрали подарунок для мами", "Я купив квитки на концерт", "Вони грали на гітарі", "Я пояснив ситуацію вчителю",
+  "Ми провели зустріч у кабінеті", "Я встав раніше за всіх", "Ми зварили суп на обід", "Ти відвідав музей у Варшаві?", "Я навчаюсь на факультеті філології",
+  "Мама прибрала в кімнаті", "Ми запакували валізи", "Я надіслав гроші братові", "Ми бродили старими вулицями", "Вона створила новий акаунт",
+  "Я налаштував інтернет", "Ми разом співали у хорі", "Він випадково зламав ручку", "Я переписав нотатки", "Ми нагодували пташок",
+  "Вона повернулась о десятій", "Я знайшов гаманець на лавці", "Ми розв’язали всі вправи", "Ти згадав її день народження?", "Він відремонтував кран",
+  "Ми покатались на човні", "Я завчив нові слова", "Вона поділилася своїми думками", "Ми встановили нову полицю", "Я натиснув на паузу",
+  "Ми заблукали в лісі", "Я намалював краєвид", "Вони прикрасили торт", "Ти приготував сніданок?", "Ми обговорили всі деталі"
 ];
 
 const polishSentences = [
-  "Przeczytałem ciekawą książkę", "Ona spotkała koleżankę w kawiarni", "Przygotowaliśmy razem kolację", "Zabrali dokumenty z biura", "Wysłałem maila",
-  "Tata naprawił rower", "Zamówiliśmy pizzę do domu", "Widziałeś nowy film?", "Dzieci odrobiły zadanie domowe", "Otworzyłem okno w pokoju",
-  "Byliśmy w górach", "Zostawił telefon w samochodzie", "Wyłączyłem światło", "Upiekliśmy tort na święto", "Zrobiłem zdjęcie zachodu słońca",
-  "Siostra przyniosła pomarańcze", "Słuchaliśmy radia w drodze", "Kupiłem nowy plecak", "Grali w piłkę nożną na stadionie", "Wytłumaczyłem im zadanie",
-  "Oglądaliśmy serial wieczorem", "Obudziłem się o siódmej", "Spakowaliśmy rzeczy na wyjazd", "Widziałeś nasz ogród?", "Uczę się włoskiego",
-  "Mama zrobiła śniadanie", "Zaplaliśmy wycieczkę", "Dostałem pocztówkę z zagranicy", "Spacerowaliśmy po starym mieście", "Rysowała na tablecie",
-  "Zainstalowałem nowy program", "Śpiewaliśmy karaoke", "Stłukł filiżankę", "Pisałem wypracowanie do szkoły", "Nakarmiliśmy kota",
-  "Przyszła o ósmej", "Znalazłem klucze pod stołem", "Rozwiązaliśmy zadanie", "Przypomniałeś sobie jej nazwisko?", "Naprawił zegarek",
-  "Pływaliśmy w basenie", "Nauczyłem się nowej piosenki", "Opowiedziała ciekawą historię", "Zbudowaliśmy namiot", "Nacisnąłem dzwonek",
-  "Zgubiliśmy się w mieście", "Narysowałem portret", "Ozdobili choinkę", "Zrobiłeś kawę?", "Omówiliśmy ważne sprawy"
+  "Spotkałem starego przyjaciela", "Ona napisała do mnie list", "Wynajęliśmy mieszkanie w centrum", "Przyjechali zbyt późno", "Usłyszałem dziwny dźwięk",
+  "Siostra spóźniła się na lekcję", "Zostawiliśmy kurtki w samochodzie", "Otworzyłeś właściwe drzwi?", "Dzieci obejrzały bajkę", "Przygotowałem herbatę z cytryną",
+  "Posprzątaliśmy mieszkanie", "Dostał nową pracę", "Skończyłem czytać artykuł", "Spędziliśmy dzień na łonie natury", "Zrobiłem zdjęcie budynku",
+  "Babcia przyniosła ciepłe koce", "Wybraliśmy prezent dla mamy", "Kupiłem bilety na koncert", "Grali na gitarze", "Wytłumaczyłem sytuację nauczycielowi",
+  "Odbyliśmy spotkanie w gabinecie", "Wstałem wcześniej niż wszyscy", "Ugotowaliśmy zupę na obiad", "Odwiedziłeś muzeum w Warszawie?", "Studiuję na wydziale filologii",
+  "Mama posprzątała pokój", "Spakowaliśmy walizki", "Wysłałem pieniądze bratu", "Spacerowaliśmy starymi ulicami", "Stworzyła nowe konto",
+  "Skonfigurowałem internet", "Śpiewaliśmy razem w chórze", "Przypadkowo złamał długopis", "Przepisałem notatki", "Nakarmiliśmy ptaki",
+  "Wróciła o dziesiątej", "Znalazłem portfel na ławce", "Rozwiązaliśmy wszystkie ćwiczenia", "Przypomniałeś sobie jej urodziny?", "Naprawił kran",
+  "Popływaliśmy łódką", "Nauczyłem się nowych słów", "Podzieliła się swoimi myślami", "Zamontowaliśmy nową półkę", "Nacisnąłem pauzę",
+  "Zgubiliśmy się w lesie", "Narysowałem krajobraz", "Ozdobili tort", "Przygotowałeś śniadanie?", "Omówiliśmy wszystkie szczegóły"
 ];
+
 
 
 
