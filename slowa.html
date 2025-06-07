@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Гра: Переклади на польську</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: mintcream;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+    }
+    .game-box {
+      background: #bdfff7;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 350px;
+    }
+    select, input, button {
+      padding: 10px;
+      margin-top: 10px;
+      width: 100%;
+    }
+    button {
+      background-color: #00b4d8;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .word {
+      font-size: 24px;
+      margin: 20px 0;
+      color: #333;
+    }
+    .result {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    #next-btn {
+      display: none; /* Приховано спочатку */
+    }
+    #level{
+        border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1> Переклади слово</h1>
+  <div class="game-box">
+    <label for="level">Рівень складності:</label>
+    <select id="level" onchange="initializeGame()">
+      <option value="A2">A2 (легкий)</option>
+      <option value="B1">B1 (середній)</option>
+      <option value="B2">B2 (важкий)</option>
+    </select>
+
+    <div class="word" id="ukrainian-word">Натисни "Старт"</div>
+
+    <input type="text" id="user-input" placeholder="Введіть польський переклад">
+    <button onclick="checkAnswer()">Перевірити</button>
+    <button id="next-btn" onclick="nextWord()">Наступне слово</button>
+    <a href="cwiczenie.html"><button>Powrót</button></a>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+const words = {
+  A2: {
+    ua: [
+      "дім", "собака", "мама", "дитина", "школа",
+      "вода", "їжа", "місто", "день", "ніч",
+      "друг", "сестра", "брат", "тато", "котик",
+      "машина", "вікно", "стілець", "стіл", "двері",
+      "книга", "ручка", "олівець", "телефон", "телевізор",
+      "ноутбук", "літо", "зима", "осінь", "весна",
+      "дощ", "сонце", "місяць", "зірка", "море",
+      "озеро", "річка", "гора", "ліс", "сад",
+      "яблуко", "банан", "молоко", "хліб", "сир",
+      "суп", "чай", "кава", "торт", "печиво"
+    ],
+    pl: [
+      "dom", "pies", "mama", "dziecko", "szkoła",
+      "woda", "jedzenie", "miasto", "dzień", "noc",
+      "przyjaciel", "siostra", "brat", "tata", "kot",
+      "samochód", "okno", "krzesło", "stół", "drzwi",
+      "książka", "długopis", "ołówek", "telefon", "telewizor",
+      "laptop", "lato", "zima", "jesień", "wiosna",
+      "deszcz", "słońce", "księżyc", "gwiazda", "morze",
+      "jezioro", "rzeka", "góra", "las", "ogród",
+      "jabłko", "banan", "mleko", "chleb", "ser",
+      "zupa", "herbata", "kawa", "tort", "ciastko"
+    ]
+  },
+
+  B1: {
+    ua: [
+      "поїздка", "магазин", "гроші", "робота", "відпочинок",
+      "пригода", "страх", "надія", "любов", "повага",
+      "досвід", "успіх", "невдача", "помилка", "пам'ять",
+      "мрія", "відчуття", "емоція", "думка", "ідея",
+      "вибір", "шанс", "запитання", "відповідь", "порада",
+      "погляд", "життя", "доля", "вік", "дитинство",
+      "юність", "дорослість", "свято", "весілля", "дружба",
+      "здоров'я", "лікар", "аптека", "ліки", "лікування",
+      "спорт", "перемога", "поразка", "матч", "команда",
+      "готель", "аеропорт", "квиток", "валіза", "паспорт"
+    ],
+    pl: [
+      "podróż", "sklep", "pieniądze", "praca", "wypoczynek",
+      "przygoda", "strach", "nadzieja", "miłość", "szacunek",
+      "doświadczenie", "sukces", "porażka", "błąd", "pamięć",
+      "marzenie", "uczucie", "emocja", "myśl", "pomysł",
+      "wybór", "szansa", "pytanie", "odpowiedź", "rada",
+      "spojrzenie", "życie", "los", "wiek", "dzieciństwo",
+      "młodość", "dorosłość", "święto", "ślub", "przyjaźń",
+      "zdrowie", "lekarz", "apteka", "leki", "leczenie",
+      "sport", "zwycięstwo", "porażka", "mecz", "drużyna",
+      "hotel", "lotnisko", "bilet", "walizka", "paszport"
+    ]
+  },
+
+  B2: {
+    ua: [
+      "усвідомлення", "досвід", "суспільство", "відповідальність", "самостійність",
+      "особистість", "цінність", "повага", "вплив", "роль",
+      "проблема", "рішення", "висновок", "аргумент", "факт",
+      "інформація", "приклад", "доказ", "стратегія", "мотивація",
+      "переконання", "довіра", "конфлікт", "співпраця", "згода",
+      "усвідомленість", "рефлексія", "прагнення", "розвиток", "зростання",
+      "професія", "спеціальність", "кар'єра", "навчання", "дослідження",
+      "аналіз", "оцінка", "проєкт", "технологія", "інновація",
+      "екологія", "економіка", "політика", "суспільний устрій", "закон",
+      "права", "обов’язки", "етика", "мораль", "свобода"
+    ],
+    pl: [
+      "świadomość", "doświadczenie", "społeczeństwo", "odpowiedzialność", "samodzielność",
+      "osobowość", "wartość", "szacunek", "wpływ", "rola",
+      "problem", "rozwiązanie", "wniosek", "argument", "fakt",
+      "informacja", "przykład", "dowód", "strategia", "motywacja",
+      "przekonanie", "zaufanie", "konflikt", "współpraca", "zgoda",
+      "uważność", "refleksja", "dążenie", "rozwój", "wzrost",
+      "zawód", "specjalność", "kariera", "nauka", "badanie",
+      "analiza", "ocena", "projekt", "technologia", "innowacja",
+      "ekologia", "ekonomia", "polityka", "ustrój społeczny", "prawo",
+      "prawa", "obowiązki", "etyka", "moralność", "wolność"
+    ]
+  }
+};
+
+
+    let currentLevel = 'A2';
+    let currentShuffledIndexes = [];
+    let currentIndex = 0;
+    let wordPointer = 0;
+
+    function shuffleArray(length) {
+      const array = Array.from({ length }, (_, i) => i);
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    function initializeGame() {
+      currentLevel = document.getElementById('level').value;
+      const levelWords = words[currentLevel];
+      currentShuffledIndexes = shuffleArray(levelWords.ua.length);
+      wordPointer = 0;
+      document.getElementById('result').textContent = '';
+      document.getElementById('ukrainian-word').textContent = "Натисни \"Перевірити\"";
+      document.getElementById('user-input').value = '';
+      document.getElementById('next-btn').style.display = 'none';
+      nextWord(); // одразу показати перше слово
+    }
+
+    function nextWord() {
+      if (wordPointer >= currentShuffledIndexes.length) {
+        document.getElementById('ukrainian-word').textContent = "🎉 Кінець слів!";
+        document.getElementById('next-btn').style.display = 'none';
+        return;
+      }
+
+      currentIndex = currentShuffledIndexes[wordPointer];
+      const levelWords = words[currentLevel];
+
+      document.getElementById('ukrainian-word').textContent = levelWords.ua[currentIndex];
+      document.getElementById('user-input').value = '';
+      document.getElementById('result').textContent = '';
+      document.getElementById('next-btn').style.display = 'none';
+      wordPointer++;
+    }
+
+    function checkAnswer() {
+      const userInput = document.getElementById('user-input').value.trim().toLowerCase();
+      const correctAnswer = words[currentLevel].pl[currentIndex].toLowerCase();
+      const result = document.getElementById('result');
+
+      if (userInput === correctAnswer) {
+        result.textContent = "✅ Правильно!";
+        result.style.color = "green";
+        document.getElementById('next-btn').style.display = 'block';
+      } else {
+        result.textContent = `❌ Неправильно.`;
+        result.style.color = "red";
+        document.getElementById('next-btn').style.display = 'none';
+      }
+    }
+
+    // ініціалізація при запуску
+    initializeGame();
+  </script>
+
+</body>
+</html>
