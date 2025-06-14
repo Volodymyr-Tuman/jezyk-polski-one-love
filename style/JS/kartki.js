@@ -1,27 +1,27 @@
 const ukrainianSentences = [
-  "Я прочитав новини зранку", "Вона забула парасольку вдома", "Ми зателефонували бабусі", "Вони поїхали на вокзал", "Я вимив посуд після обіду",
-  "Брат подивився новий серіал", "Ми запізнилися на автобус", "Ти закрив вікно у вітальні?", "Діти склали пазл", "Я знайшов цікаву статтю",
-  "Ми зняли номер у готелі", "Він приготував чай з медом", "Я зарядив телефон на ніч", "Ми сиділи біля вогнища", "Я навчився користуватися новим застосунком",
-  "Сестра спекла печиво", "Ми подивилися старий фільм", "Я зателефонував татові", "Вони залишили записку на столі", "Я заповнив анкету",
-  "Ми відвідали друзів у Києві", "Я встав о шостій ранку", "Ми поклали речі в багажник", "Ти відчинив хвіртку?", "Я навчаюсь онлайн",
-  "Мама пошила нову сорочку", "Ми взяли таксі до центру", "Я отримав відповідь на листа", "Ми довго говорили на кухні", "Вона створила презентацію",
-  "Я увімкнув ноутбук", "Ми співали пісню біля вогню", "Він розлив сік на стіл", "Я зробив нотатки з лекції", "Ми підгодували качок",
-  "Вона повернула книжку до бібліотеки", "Я витер пил зі столу", "Ми виконали всі завдання", "Ти пригадав адресу?", "Він полагодив розетку",
-  "Ми поїхали в ліс на прогулянку", "Я повторив слова перед тестом", "Вона подякувала за подарунок", "Ми перевірили електронну пошту", "Я натиснув на кнопку «відправити»",
-  "Ми загубили карту в дорозі", "Я зробив ескіз", "Вони розвісили фотографії", "Ти приготував вечерю?", "Ми обговорили графік роботи"
+  "Я замовила піцу додому", "Вона пофарбувала волосся", "Я зустріла однокласницю в метро", "Вона написала листа подрузі", "Я взяла книгу з бібліотеки",
+  "Вона здала звіт вчасно", "Я подивилася новий фільм учора", "Вона заговорила першою", "Я запізнилася на урок", "Вона знайшла нову роботу",
+  "Я купила нові кросівки", "Вона натиснула на кнопку виклику", "Я зателефонувала мамі", "Вона залишила ключі на полиці", "Я приготувала чай з імбиром",
+  "Вона поділилася новинами", "Я віднесла документи в офіс", "Вона запланувала поїздку", "Я пофарбувала стіни в кімнаті", "Вона принесла мені парасолю",
+  "Я обрала червону сукню", "Вона прочитала статтю до кінця", "Я роздрукувала білети", "Вона натягнула капюшон, бо йшов дощ", "Я надрукувала звіт для менеджера",
+  "Вона забула пароль від пошти", "Я надіслала повідомлення вчора ввечері", "Вона побачила помилку в тексті", "Я заварила собі каву", "Вона вивчила вірш напам’ять",
+  "Я заповнила онлайн-форму", "Вона приготувала пиріг з яблуками", "Я склала речі в валізу", "Вона встановила нову програму", "Я відпочила після роботи",
+  "Вона виклала фото в соцмережі", "Я зустріла подругу в парку", "Вона підготувала доповідь", "Я увімкнула світло в коридорі", "Вона прочитала всі інструкції",
+  "Я прибрала на кухні", "Вона замовила столик у ресторані", "Я відповіла на лист", "Вона пішла в магазин по фрукти", "Я поклала телефон на зарядку",
+  "Вона завершила роботу над проєктом", "Я відкрила банку варення", "Вона вийшла з дому о восьмій", "Я відчинила вікно на ніч", "Вона вивісила білизну на балкон"
 ];
 
 const polishSentences = [
-  "Przeczytałem wiadomości rano", "Ona zapomniała parasolki w domu", "Zadzwoniliśmy do babci", "Pojechali na dworzec", "Umyłem naczynia po obiedzie",
-  "Brat obejrzał nowy serial", "Spóźniliśmy się na autobus", "Zamknąłeś okno w salonie?", "Dzieci ułożyły puzzle", "Znalazłem ciekawy artykuł",
-  "Wynajęliśmy pokój w hotelu", "Zaparzył herbatę z miodem", "Naładowałem telefon na noc", "Siedzieliśmy przy ognisku", "Nauczyłem się używać nowej aplikacji",
-  "Siostra upiekła ciasteczka", "Obejrzeliśmy stary film", "Zadzwoniłem do taty", "Zostawili wiadomość na stole", "Wypełniłem formularz",
-  "Odwiedziliśmy przyjaciół w Kijowie", "Wstałem o szóstej rano", "Włożyliśmy rzeczy do bagażnika", "Otworzyłeś furtkę?", "Uczę się online",
-  "Mama uszyła nową koszulę", "Wzięliśmy taksówkę do centrum", "Dostałem odpowiedź na maila", "Długo rozmawialiśmy w kuchni", "Stworzyła prezentację",
-  "Włączyłem laptopa", "Śpiewaliśmy piosenkę przy ognisku", "Rozlał sok na stole", "Zrobiłem notatki z wykładu", "Dokarmiliśmy kaczki",
-  "Oddała książkę do biblioteki", "Starłem kurz ze stołu", "Wykonaliśmy wszystkie zadania", "Przypomniałeś sobie adres?", "Naprawił gniazdko",
-  "Pojechaliśmy do lasu na spacer", "Powtórzyłem słówka przed testem", "Podziękowała za prezent", "Sprawdziliśmy maila", "Kliknąłem przycisk „wyślij”",
-  "Zgubiliśmy mapę w drodze", "Zrobiłem szkic", "Powiesili zdjęcia", "Przygotowałeś kolację?", "Omówiliśmy grafik pracy"
+  "Zamówiłam pizzę do domu", "Pofarbowała włosy", "Spotkałam koleżankę w metrze", "Napisała list do przyjaciółki", "Wzięłam książkę z biblioteki",
+  "Zdała raport na czas", "Obejrzałam nowy film wczoraj", "Odezwała się pierwsza", "Spóźniłam się na lekcję", "Znalazła nową pracę",
+  "Kupiłam nowe trampki", "Nacisnęła przycisk wezwania", "Zadzwoniłam do mamy", "Zostawiła klucze na półce", "Przygotowałam herbatę z imbirem",
+  "Podzieliła się wiadomościami", "Zaniosłam dokumenty do biura", "Zaplanowała wycieczkę", "Pomalowałam ściany w pokoju", "Przyniosła mi parasolkę",
+  "Wybrałam czerwoną sukienkę", "Przeczytała artykuł do końca", "Wydrukowałam bilety", "Naciągnęła kaptur, bo padał deszcz", "Wydrukowałam raport dla menedżera",
+  "Zapomniała hasła do poczty", "Wysłałam wiadomość wczoraj wieczorem", "Zobaczyła błąd w tekście", "Zaparzyłam sobie kawę", "Nauczyła się wiersza na pamięć",
+  "Wypełniłam formularz online", "Przygotowała szarlotkę", "Spakowałam rzeczy do walizki", "Zainstalowała nowy program", "Odpoczęłam po pracy",
+  "Wrzuciła zdjęcie na media społecznościowe", "Spotkałam przyjaciółkę w parku", "Przygotowała referat", "Włączyłam światło w korytarzu", "Przeczytała wszystkie instrukcje",
+  "Posprzątałam w kuchni", "Zamówiła stolik w restauracji", "Odpowiedziałam na maila", "Poszła do sklepu po owoce", "Położyłam telefon na ładowarkę",
+  "Zakończyła pracę nad projektem", "Otworzyłam słoik z dżemem", "Wyszła z domu o ósmej", "Otworzyłam okno na noc", "Powiesiła pranie na balkonie"
 ];
 
 
