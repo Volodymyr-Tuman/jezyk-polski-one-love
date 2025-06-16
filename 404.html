@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<title>ERROR</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+  html, body {
+    margin: 0; padding: 0; height: 100%;
+    background: black;
+    font-family: 'Courier New', monospace;
+    overflow: hidden;
+    color: #00ffcc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+
+    /* Об'єднаний фон з пульсацією і лініями */
+    background:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(255,0,255,0.05) 3px
+      ),
+      radial-gradient(circle at center, rgba(255, 0, 255, 0.05), transparent 70%);
+    animation: flickerBg 0.3s infinite alternate, scanlines 0.1s linear infinite;
+  }
+
+  .container {
+    margin: 20px;
+    position: relative;
+    text-align: center;
+    max-width: 90vw;
+  }
+
+  h1 {
+    font-size: 8vw;
+    color: #00ffcc;
+    text-shadow:
+      0 0 2px #0ff,
+      0 0 10px #0ff,
+      0 0 20px #ff00ff;
+    margin: 0;
+    line-height: 1.1;
+  }
+
+  .warning {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.5vw;
+    color: red;
+    text-shadow:
+      0 0 5px red,
+      0 0 10px red,
+      0 0 20px darkred;
+    animation: warningBlink 1s infinite;
+    user-select: none;
+    z-index: 10;
+  }
+
+  @keyframes flickerBg {
+    0% { background-color: #000; }
+    50% { background-color: #111; }
+    100% { background-color: #000; }
+  }
+
+  @keyframes scanlines {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100%; }
+  }
+
+  @keyframes warningBlink {
+    0%, 100% {
+      opacity: 1;
+      text-shadow:
+        0 0 5px red,
+        0 0 10px red,
+        0 0 20px darkred;
+    }
+    50% {
+      opacity: 0.4;
+      text-shadow:
+        0 0 2px darkred,
+        0 0 5px darkred;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <div class="container">
+    <h1 id="errorText">
+      ERR0R 404
+    </h1>
+  </div>
+
+  <div class="warning">
+    ⚠️ CRITICAL ERROR: PAGE_NOT_FOUND_404 ⚠️
+  </div>
+
+<script>
+  const el = document.getElementById('errorText');
+
+  function glitch() {
+    const rand = Math.random();
+    if (rand < 0.4) {
+      el.style.opacity = '0';
+    } else {
+      el.style.opacity = '1';
+    }
+    const timeout = 100 + Math.random() * 500; // рандом від 100 до 600 мс
+    setTimeout(glitch, timeout);
+  }
+
+  glitch();
+</script>
+
+</body>
+</html>
