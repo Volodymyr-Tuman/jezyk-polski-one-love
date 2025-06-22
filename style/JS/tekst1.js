@@ -1,15 +1,16 @@
-  const correctAnswers = {
-    q1: "b", // Bo dni są długie, mimo zmiennej pogody
-    q2: "b", // Dotarcie do miejsc niedostępnych dla zwykłych aut
-    q3: "c", // Gullfoss, Strokkur i Þingvellir
-    q4: "c", // Gorącą rzekę Reykjadalur
-    q5: "a", // Historie o elfach i trollach
-    q6: "c", // Jako wymagającą, dziką i niedostępną krainę
-    q7: "b", // Kontrasty między naturą – ogień i lód
-    q8: "a", // Zrozumiał, że warto podróżować wolniej i uważniej
-    q9: "b", // Czarne plaże Vik
-    q10: "b" // Wyprawę zimą, by zobaczyć zorzę polarną
-  };
+const correctAnswers = {
+  q1: "b", // Johannes Gutenberg
+  q2: "c", // W Chinach
+  q3: "b", // Biblia
+  q4: "c", // Ułatwił dostęp do wiedzy
+  q5: "b", // Pozwolił szybko rozpowszechniać nowe idee
+  q6: "c", // Książki, gazety, ulotki, podręczniki
+  q7: "c", // Druk offsetowy i rotacyjny
+  q8: "c", // Ułatwił przekazywanie informacji i wiedzy
+  q9: "a", // Druk cyfrowy i 3D
+  q10: "b" // Rozwój nowoczesnego społeczeństwa opartego na wiedzy
+};
+
 
     function checkAnswers() {
       for (let key in correctAnswers) {
