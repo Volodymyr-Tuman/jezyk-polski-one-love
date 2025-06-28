@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zgadnij co to!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #f0f0f0;
+        }
+        img {
+            max-width: 300px;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 20px;
+            transition: transform 0.3s, max-width 0.3s;
+            border-style: inset;
+        }
+
+        img:hover{
+            transform: scale(1.05);
+            max-width: 315px;
+            border-style: outset;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin: 5px;
+            border-radius: 20px;
+
+        }
+
+        button{
+            padding: 10px;
+            font-size: 16px;
+            margin: 5px;
+            border-radius: 20px;
+            transition: background-color .3s, transform .3s;
+        }
+        button:hover{
+            transform: scale(1.1);
+            background-color: rgb(183, 183, 183);
+            font-style: italic;
+        }
+
+        #feedback {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        #nextButton {
+            display: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Zgadnij co to po polsku!</h1>
+<img id="image" src="kotek.jpg" alt="Obrazek">
+<br>
+<input type="text" id="answer" placeholder="Wpisz nazwę po polsku">
+<button onclick="checkAnswer()">Sprawdź</button>
+
+<div id="feedback"></div>
+<button id="nextButton" onclick="nextImage()">Dalej</button>
+
+<script>
+const items = [
+    // Zwierzęta
+    { img: 'https://cdn.pixabay.com/photo/2024/01/29/20/40/cat-8540772_1280.jpg', answer: 'kot' },
+    { img: 'https://cdn.pixabay.com/photo/2025/04/22/05/54/dog-9548923_1280.jpg', answer: 'pies' },
+    { img: 'https://cdn.pixabay.com/photo/2014/06/21/08/43/rabbit-373691_1280.jpg', answer: 'królik' },
+    { img: 'https://cdn.pixabay.com/photo/2014/12/08/17/52/horse-561221_1280.jpg', answer: 'koń' },
+    { img: 'https://cdn.pixabay.com/photo/2023/06/29/10/33/lion-8096155_1280.png', answer: 'lew' },
+    { img: 'https://cdn.pixabay.com/photo/2021/12/21/08/29/owl-6884773_1280.jpg', answer: 'sowa' },
+    { img: 'https://cdn.pixabay.com/photo/2024/02/16/19/22/green-parrot-8578205_1280.jpg', answer: 'papuga' },
+    { img: 'https://cdn.pixabay.com/photo/2021/07/28/20/39/penguin-6503804_1280.jpg', answer: 'pingwin' },
+    { img: 'https://cdn.pixabay.com/photo/2013/05/17/07/12/elephant-111695_1280.jpg', answer: 'słoń' },
+    { img: 'https://cdn.pixabay.com/photo/2023/02/18/13/48/barbary-macaque-7797970_1280.jpg', answer: 'małpa' },
+    
+    // Pojazdy
+    { img: 'https://cdn.pixabay.com/photo/2015/01/19/13/51/car-604019_1280.jpg', answer: 'samochód' },
+    { img: 'https://cdn.pixabay.com/photo/2022/01/19/19/41/san-francisco-6950837_1280.jpg', answer: 'rower' },
+    { img: 'https://cdn.pixabay.com/photo/2022/01/30/19/31/bus-6982035_1280.jpg', answer: 'autobus' },
+    { img: 'https://cdn.pixabay.com/photo/2018/10/19/12/14/train-3758523_1280.jpg', answer: 'pociąg' },
+    { img: 'https://cdn.pixabay.com/photo/2012/10/26/01/35/aircraft-63032_1280.jpg', answer: 'samolot' },
+    { img: 'https://cdn.pixabay.com/photo/2016/11/18/21/30/bike-1836962_1280.jpg', answer: 'motocykl' },
+    { img: 'https://cdn.pixabay.com/photo/2018/03/09/06/21/transport-3210728_1280.jpg', answer: 'ciężarówka' },
+    { img: 'https://cdn.pixabay.com/photo/2023/09/25/20/11/boat-8275962_1280.jpg', answer: 'łódź' },
+    { img: 'https://cdn.pixabay.com/photo/2018/08/28/13/08/tractor-3637465_1280.jpg', answer: 'traktor' },
+    { img: 'https://cdn.pixabay.com/photo/2023/06/12/19/32/metro-8059215_1280.jpg', answer: 'tramwaj' },
+    
+    // Jedzenie
+    { img: 'https://cdn.pixabay.com/photo/2014/02/01/17/30/apple-256267_1280.jpg', answer: 'jabłko' },
+    { img: 'https://cdn.pixabay.com/photo/2016/07/11/17/31/bread-1510155_1280.jpg', answer: 'chleb' },
+    { img: 'https://cdn.pixabay.com/photo/2023/09/25/12/36/cheese-8274861_1280.jpg', answer: 'ser' },
+    { img: 'https://cdn.pixabay.com/photo/2022/05/27/10/35/strawberry-7224875_1280.jpg', answer: 'truskawka' },
+    { img: 'https://cdn.pixabay.com/photo/2017/06/16/14/43/bananas-2409385_1280.jpg', answer: 'banan' },
+    { img: 'https://cdn.pixabay.com/photo/2016/01/02/02/03/orange-1117645_1280.jpg', answer: 'pomarańcza' },
+    { img: 'https://cdn.pixabay.com/photo/2016/02/17/19/26/tomato-1205699_1280.jpg', answer: 'pomidor' },
+    { img: 'https://cdn.pixabay.com/photo/2014/11/05/16/35/milk-518067_1280.jpg', answer: 'mleko' },
+    { img: 'https://cdn.pixabay.com/photo/2016/05/05/15/29/eggs-1374141_1280.jpg', answer: 'jajko' },
+    { img: 'https://cdn.pixabay.com/photo/2022/08/02/17/50/pear-7360921_1280.jpg', answer: 'gruszka' },
+    
+    // Przedmioty codziennego użytku
+    { img: 'https://cdn.pixabay.com/photo/2015/02/26/17/56/clock-650753_1280.jpg', answer: 'zegar' },
+    { img: 'https://cdn.pixabay.com/photo/2019/02/15/11/04/book-3998252_1280.jpg', answer: 'książka' },
+    { img: 'https://cdn.pixabay.com/photo/2014/10/03/17/39/glasses-472027_1280.jpg', answer: 'okulary' },
+    { img: 'https://cdn.pixabay.com/photo/2020/09/02/03/26/iphone-5537230_1280.jpg', answer: 'telefon' },
+    { img: 'https://cdn.pixabay.com/photo/2022/10/14/08/03/earbuds-7520738_1280.jpg', answer: 'słuchawki' },
+    { img: 'https://cdn.pixabay.com/photo/2016/03/07/00/01/photo-camera-1241441_1280.jpg', answer: 'aparat' },
+    { img: 'https://cdn.pixabay.com/photo/2020/04/19/11/52/drink-5063295_1280.jpg', answer: 'kubek' },
+    { img: 'https://cdn.pixabay.com/photo/2016/05/08/18/24/chair-1379582_1280.jpg', answer: 'krzesło' },
+    { img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaHFs1sLnIMVbNFUdxxU4UfktjhFbAPHT-eg&s', answer: 'stół' },
+    { img: 'https://cdn.pixabay.com/photo/2016/02/15/22/47/kerosene-lamp-1202277_1280.jpg', answer: 'lampa' }
+];
+
+// Функція перемішування масиву (Fisher-Yates)
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+shuffle(items); // Перемішуємо картинки перед грою
+
+let currentIndex = 0;
+
+function loadImage() {
+    document.getElementById('image').style.display = 'inline'; // На випадок, якщо ховали
+    document.getElementById('answer').style.display = 'inline';
+    document.getElementById('image').src = items[currentIndex].img;
+    document.getElementById('answer').value = '';
+    document.getElementById('feedback').textContent = '';
+    document.getElementById('nextButton').style.display = 'none';
+}
+
+function checkAnswer() {
+    const userAnswer = document.getElementById('answer').value.trim().toLowerCase();
+    if (userAnswer === items[currentIndex].answer.toLowerCase()) {
+        document.getElementById('feedback').textContent = 'Brawo! Poprawna odpowiedź!';
+        if (currentIndex === items.length - 1) {
+            document.getElementById('nextButton').textContent = 'Zakończ';
+        } else {
+            document.getElementById('nextButton').textContent = 'Dalej';
+        }
+        document.getElementById('nextButton').style.display = 'inline-block';
+    } else {
+        document.getElementById('feedback').textContent = 'Niestety, spróbuj ponownie.';
+    }
+}
+
+function nextImage() {
+    if (currentIndex === items.length - 1) {
+        document.getElementById('feedback').textContent = 'Gratulacje! Wykonałeś wszystkie zadania!';
+        document.getElementById('nextButton').style.display = 'none';
+        document.getElementById('image').style.display = 'none';
+        document.getElementById('answer').style.display = 'none';
+    } else {
+        currentIndex++;
+        loadImage();
+        document.getElementById('nextButton').textContent = 'Dalej';
+    }
+}
+
+loadImage();
+</script>
+
+
+
+</body>
+</html>
