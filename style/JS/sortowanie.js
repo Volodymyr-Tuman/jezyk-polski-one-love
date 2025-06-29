@@ -1,47 +1,24 @@
 const words = 
 [
   // Czas teraźniejszy
-  ["jem", "teraźniejszy"], ["czytam", "teraźniejszy"], ["piszę", "teraźniejszy"], ["jadę", "teraźniejszy"],
-  ["mam", "teraźniejszy"], ["mówię", "teraźniejszy"], ["gotuję", "teraźniejszy"], ["chodzę", "teraźniejszy"],
-  ["oglądam", "teraźniejszy"], ["uczę się", "teraźniejszy"], ["słucham", "teraźniejszy"], ["piję", "teraźniejszy"],
-  ["śpię", "teraźniejszy"], ["tańczę", "teraźniejszy"], ["gram", "teraźniejszy"], ["czyścisz", "teraźniejszy"],
-  ["myślę", "teraźniejszy"], ["czekam", "teraźniejszy"], ["zwiedzam", "teraźniejszy"], ["kupuję", "teraźniejszy"],
-  ["biegam", "teraźniejszy"], ["pracuję", "teraźniejszy"], ["sprzątam", "teraźniejszy"], ["pomagam", "teraźniejszy"],
-  ["patrzę", "teraźniejszy"], ["szukam", "teraźniejszy"], ["robię zakupy", "teraźniejszy"], ["odpoczywam", "teraźniejszy"],
-  ["dzwonię", "teraźniejszy"], ["wstaję", "teraźniejszy"], ["zasypiam", "teraźniejszy"], ["ubieram się", "teraźniejszy"],
-  ["budzę się", "teraźniejszy"], ["jem śniadanie", "teraźniejszy"], ["myję zęby", "teraźniejszy"], ["idę do pracy", "teraźniejszy"],
-  ["rozmawiam", "teraźniejszy"], ["rysuję", "teraźniejszy"], ["śmieję się", "teraźniejszy"], ["płaczę", "teraźniejszy"],
-  ["otwieram", "teraźniejszy"], ["zamykam", "teraźniejszy"], ["nazywam się", "teraźniejszy"], ["siadam", "teraźniejszy"],
-  ["wstaję", "teraźniejszy"], ["płacę", "teraźniejszy"], ["pachnę", "teraźniejszy"], ["czuję", "teraźniejszy"],
-
+  ["biegnę", "teraźniejszy"], ["gotuję obiad", "teraźniejszy"], ["jadę rowerem", "teraźniejszy"], ["gram na gitarze", "teraźniejszy"],
+  ["czytam książkę", "teraźniejszy"], ["patrzę w okno", "teraźniejszy"], ["uczę się polskiego", "teraźniejszy"], ["myję naczynia", "teraźniejszy"],
+  ["piję kawę", "teraźniejszy"], ["chodzę do sklepu", "teraźniejszy"], ["oglądam serial", "teraźniejszy"], ["śpiewam piosenkę", "teraźniejszy"],
+  ["rozmawiam z kolegą", "teraźniejszy"], ["czyszczę okulary", "teraźniejszy"], ["tańczę w klubie", "teraźniejszy"], ["szukam kluczy", "teraźniejszy"],
+  
   // Czas przeszły
-  ["czytała", "przeszły"], ["pisał", "przeszły"], ["jechałem", "przeszły"], ["miałam", "przeszły"],
-  ["mówił", "przeszły"], ["gotowałem", "przeszły"], ["chodziłam", "przeszły"], ["oglądałem", "przeszły"],
-  ["uczyłam się", "przeszły"], ["słuchałem", "przeszły"], ["piłam", "przeszły"], ["spałem", "przeszły"],
-  ["tańczyła", "przeszły"], ["grałem", "przeszły"], ["czyściła", "przeszły"], ["myślałem", "przeszły"],
-  ["czekałam", "przeszły"], ["zwiedzałem", "przeszły"], ["kupowałem", "przeszły"], ["biegłem", "przeszły"],
-  ["pracowałem", "przeszły"], ["sprzątałam", "przeszły"], ["pomagałem", "przeszły"], ["patrzyłem", "przeszły"],
-  ["szukałam", "przeszły"], ["zrobiłem zakupy", "przeszły"], ["odpoczywałem", "przeszły"], ["dzwoniłem", "przeszły"],
-  ["wstałam", "przeszły"], ["zasnąłem", "przeszły"], ["ubrałem się", "przeszły"], ["obudziłem się", "przeszły"],
-  ["zjadłem śniadanie", "przeszły"], ["umyłam zęby", "przeszły"], ["poszedłem do pracy", "przeszły"], ["rozmawiałem", "przeszły"],
-  ["rysowałem", "przeszły"], ["śmiałem się", "przeszły"], ["płakałam", "przeszły"], ["otworzyłem", "przeszły"],
-  ["zamknąłem", "przeszły"], ["nazywałam się", "przeszły"], ["usiadłem", "przeszły"], ["wstałem", "przeszły"],
-  ["zapłaciłam", "przeszły"], ["pachniałem", "przeszły"], ["czułem", "przeszły"],
+  ["biegałem", "przeszły"], ["gotowałem obiad", "przeszły"], ["jechałem rowerem", "przeszły"], ["grałem na gitarze", "przeszły"],
+  ["czytałem książkę", "przeszły"], ["patrzyłem w okno", "przeszły"], ["uczyłem się polskiego", "przeszły"], ["myłem naczynia", "przeszły"],
+  ["piłem kawę", "przeszły"], ["chodziłem do sklepu", "przeszły"], ["oglądałem serial", "przeszły"], ["śpiewałem piosenkę", "przeszły"],
+  ["rozmawiałem z kolegą", "przeszły"], ["czyściłem okulary", "przeszły"], ["tańczyłem w klubie", "przeszły"], ["szukałem kluczy", "przeszły"],
 
   // Czas przyszły
-  ["zrobię", "przyszły"], ["przeczytam", "przyszły"], ["napiszę", "przyszły"], ["pojadę", "przyszły"],
-  ["będę mieć", "przyszły"], ["powiem", "przyszły"], ["ugotuję", "przyszły"], ["pójdę", "przyszły"],
-  ["obejrzę", "przyszły"], ["nauczę się", "przyszły"], ["posłucham", "przyszły"], ["napiję się", "przyszły"],
-  ["pójdę spać", "przyszły"], ["potańczę", "przyszły"], ["pogram", "przyszły"], ["wyczyszczę", "przyszły"],
-  ["pomyślę", "przyszły"], ["poczekam", "przyszły"], ["pozwiedzam", "przyszły"], ["kupię", "przyszły"],
-  ["pobiegnę", "przyszły"], ["popracuję", "przyszły"], ["posprzątam", "przyszły"], ["pomogę", "przyszły"],
-  ["popatrzę", "przyszły"], ["poszukam", "przyszły"], ["zrobię zakupy", "przyszły"], ["odpocznę", "przyszły"],
-  ["zadzwonię", "przyszły"], ["wstanę", "przyszły"], ["zasnę", "przyszły"], ["ubiorę się", "przyszły"],
-  ["obudzę się", "przyszły"], ["zjem śniadanie", "przyszły"], ["umyję zęby", "przyszły"], ["pójdę do pracy", "przyszły"],
-  ["porozmawiam", "przyszły"], ["narysuję", "przyszły"], ["pośmieję się", "przyszły"], ["popłaczę", "przyszły"],
-  ["otworzę", "przyszły"], ["zamknę", "przyszły"], ["nazwę się", "przyszły"], ["usiądę", "przyszły"],
-  ["zapłacę", "przyszły"], ["poczuję", "przyszły"]
+  ["pobiegnę", "przyszły"], ["ugotuję obiad", "przyszły"], ["pojadę rowerem", "przyszły"], ["pogram na gitarze", "przyszły"],
+  ["przeczytam książkę", "przyszły"], ["popatrzę w okno", "przyszły"], ["nauczę się polskiego", "przyszły"], ["umyję naczynia", "przyszły"],
+  ["napiję się kawy", "przyszły"], ["pójdę do sklepu", "przyszły"], ["obejrzę serial", "przyszły"], ["zaśpiewam piosenkę", "przyszły"],
+  ["porozmawiam z kolegą", "przyszły"], ["wyczyszczę okulary", "przyszły"], ["potańczę w klubie", "przyszły"], ["poszukam kluczy", "przyszły"]
 ];
+
 
 
 
