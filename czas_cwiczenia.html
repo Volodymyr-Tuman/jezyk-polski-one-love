@@ -76,153 +76,62 @@
   <script>
 const tasks = [
   // === Teraźniejszy (теперішній) ===
-  ["czytać", "czytam", "Teraźniejszy", "ja"],
-  ["pisać", "piszę", "Teraźniejszy", "ja"],
-  ["gotować", "gotuję", "Teraźniejszy", "ja"],
-  ["sprzątać", "sprzątam", "Teraźniejszy", "ja"],
-  ["oglądać", "oglądam", "Teraźniejszy", "ja"],
+  ["бути", "jestem", "Teraźniejszy", "ja"],
+  ["бути", "jesteś", "Teraźniejszy", "ty"],
+  ["бути", "jest", "Teraźniejszy", "on"],
+  ["бути", "jest", "Teraźniejszy", "ona"],
+  ["бути", "jesteśmy", "Teraźniejszy", "my"],
+  ["бути", "jesteście", "Teraźniejszy", "wy"],
+  ["бути", "są", "Teraźniejszy", "oni"],
+  ["бути", "są", "Teraźniejszy", "one"],
 
-  ["czytać", "czytasz", "Teraźniejszy", "ty"],
-  ["pisać", "piszesz", "Teraźniejszy", "ty"],
-  ["gotować", "gotujesz", "Teraźniejszy", "ty"],
-  ["sprzątać", "sprzątasz", "Teraźniejszy", "ty"],
-  ["oglądać", "oglądasz", "Teraźniejszy", "ty"],
-
-  ["czytać", "czyta", "Teraźniejszy", "on"],
-  ["pisać", "pisze", "Teraźniejszy", "on"],
-  ["gotować", "gotuje", "Teraźniejszy", "on"],
-  ["sprzątać", "sprząta", "Teraźniejszy", "on"],
-  ["oglądać", "ogląda", "Teraźniejszy", "on"],
-
-  ["czytać", "czyta", "Teraźniejszy", "ona"],
-  ["pisać", "pisze", "Teraźniejszy", "ona"],
-  ["gotować", "gotuje", "Teraźniejszy", "ona"],
-  ["sprzątać", "sprząta", "Teraźniejszy", "ona"],
-  ["oglądać", "ogląda", "Teraźniejszy", "ona"],
-
-  ["czytać", "czytamy", "Teraźniejszy", "my"],
-  ["pisać", "piszemy", "Teraźniejszy", "my"],
-  ["gotować", "gotujemy", "Teraźniejszy", "my"],
-  ["sprzątać", "sprzątamy", "Teraźniejszy", "my"],
-  ["oglądać", "oglądamy", "Teraźniejszy", "my"],
-
-  ["czytać", "czytacie", "Teraźniejszy", "wy"],
-  ["pisać", "piszecie", "Teraźniejszy", "wy"],
-  ["gotować", "gotujecie", "Teraźniejszy", "wy"],
-  ["sprzątać", "sprzątacie", "Teraźniejszy", "wy"],
-  ["oglądać", "oglądacie", "Teraźniejszy", "wy"],
-
-  ["czytać", "czytają", "Teraźniejszy", "oni"],
-  ["pisać", "piszą", "Teraźniejszy", "oni"],
-  ["gotować", "gotują", "Teraźniejszy", "oni"],
-  ["sprzątać", "sprzątają", "Teraźniejszy", "oni"],
-  ["oglądać", "oglądają", "Teraźniejszy", "oni"],
-
-  ["czytać", "czytają", "Teraźniejszy", "one"],
-  ["pisać", "piszą", "Teraźniejszy", "one"],
-  ["gotować", "gotują", "Teraźniejszy", "one"],
-  ["sprzątać", "sprzątają", "Teraźniejszy", "one"],
-  ["oglądać", "oglądają", "Teraźniejszy", "one"],
+  ["починати", "zaczynam", "Teraźniejszy", "ja"],
+  ["починати", "zaczynasz", "Teraźniejszy", "ty"],
+  ["починати", "zaczyna", "Teraźniejszy", "on"],
+  ["починати", "zaczyna", "Teraźniejszy", "ona"],
+  ["починати", "zaczynamy", "Teraźniejszy", "my"],
+  ["починати", "zaczynacie", "Teraźniejszy", "wy"],
+  ["починати", "zaczynają", "Teraźniejszy", "oni"],
+  ["починати", "zaczynają", "Teraźniejszy", "one"],
 
   // === Przeszły (минулий) ===
-  ["czytać", "czytałem", "Przeszły", "ja"],
-  ["pisać", "pisałem", "Przeszły", "ja"],
-  ["gotować", "gotowałem", "Przeszły", "ja"],
-  ["sprzątać", "sprzątałem", "Przeszły", "ja"],
-  ["oglądać", "oglądałem", "Przeszły", "ja"],
+  ["бути", "byłem", "Przeszły", "ja"],
+  ["бути", "byłeś", "Przeszły", "ty"],
+  ["бути", "był", "Przeszły", "on"],
+  ["бути", "była", "Przeszły", "ona"],
+  ["бути", "byliśmy", "Przeszły", "my"],
+  ["бути", "byliście", "Przeszły", "wy"],
+  ["бути", "byli", "Przeszły", "oni"],
+  ["бути", "były", "Przeszły", "one"],
 
-  ["czytać", "czytałaś", "Przeszły", "ty"],
-  ["pisać", "pisałaś", "Przeszły", "ty"],
-  ["gotować", "gotowałaś", "Przeszły", "ty"],
-  ["sprzątać", "sprzątałaś", "Przeszły", "ty"],
-  ["oglądać", "oglądałaś", "Przeszły", "ty"],
-
-  ["czytać", "czytał", "Przeszły", "on"],
-  ["pisać", "pisał", "Przeszły", "on"],
-  ["gotować", "gotował", "Przeszły", "on"],
-  ["sprzątać", "sprzątał", "Przeszły", "on"],
-  ["oglądać", "oglądał", "Przeszły", "on"],
-
-  ["czytać", "czytała", "Przeszły", "ona"],
-  ["pisać", "pisała", "Przeszły", "ona"],
-  ["gotować", "gotowała", "Przeszły", "ona"],
-  ["sprzątać", "sprzątała", "Przeszły", "ona"],
-  ["oglądać", "oglądała", "Przeszły", "ona"],
-
-  ["czytać", "czytaliśmy", "Przeszły", "my"],
-  ["pisać", "pisaliśmy", "Przeszły", "my"],
-  ["gotować", "gotowaliśmy", "Przeszły", "my"],
-  ["sprzątać", "sprzątaliśmy", "Przeszły", "my"],
-  ["oglądać", "oglądaliśmy", "Przeszły", "my"],
-
-  ["czytać", "czytaliście", "Przeszły", "wy"],
-  ["pisać", "pisaliście", "Przeszły", "wy"],
-  ["gotować", "gotowaliście", "Przeszły", "wy"],
-  ["sprzątać", "sprzątaliście", "Przeszły", "wy"],
-  ["oglądać", "oglądaliście", "Przeszły", "wy"],
-
-  ["czytać", "czytali", "Przeszły", "oni"],
-  ["pisać", "pisali", "Przeszły", "oni"],
-  ["gotować", "gotowali", "Przeszły", "oni"],
-  ["sprzątać", "sprzątali", "Przeszły", "oni"],
-  ["oglądać", "oglądali", "Przeszły", "oni"],
-
-  ["czytać", "czytały", "Przeszły", "one"],
-  ["pisać", "pisały", "Przeszły", "one"],
-  ["gotować", "gotowały", "Przeszły", "one"],
-  ["sprzątać", "sprzątały", "Przeszły", "one"],
-  ["oglądać", "oglądały", "Przeszły", "one"],
+  ["починати", "zaczynałem", "Przeszły", "ja"],
+  ["починати", "zaczynałeś", "Przeszły", "ty"],
+  ["починати", "zaczynał", "Przeszły", "on"],
+  ["починати", "zaczynała", "Przeszły", "ona"],
+  ["починати", "zaczynaliśmy", "Przeszły", "my"],
+  ["починати", "zaczynaliście", "Przeszły", "wy"],
+  ["починати", "zaczynali", "Przeszły", "oni"],
+  ["починати", "zaczynały", "Przeszły", "one"],
 
   // === Przyszły (майбутній) ===
-  ["czytać", "będę czytać", "Przyszły", "ja"],
-  ["pisać", "będę pisać", "Przyszły", "ja"],
-  ["gotować", "będę gotować", "Przyszły", "ja"],
-  ["sprzątać", "będę sprzątać", "Przyszły", "ja"],
-  ["oglądać", "będę oglądać", "Przyszły", "ja"],
+  ["бути", "będę", "Przyszły", "ja"],
+  ["бути", "będziesz", "Przyszły", "ty"],
+  ["бути", "będzie", "Przyszły", "on"],
+  ["бути", "będzie", "Przyszły", "ona"],
+  ["бути", "będziemy", "Przyszły", "my"],
+  ["бути", "będziecie", "Przyszły", "wy"],
+  ["бути", "będą", "Przyszły", "oni"],
+  ["бути", "będą", "Przyszły", "one"],
 
-  ["czytać", "będziesz czytać", "Przyszły", "ty"],
-  ["pisać", "będziesz pisać", "Przyszły", "ty"],
-  ["gotować", "będziesz gotować", "Przyszły", "ty"],
-  ["sprzątać", "będziesz sprzątać", "Przyszły", "ty"],
-  ["oglądać", "będziesz oglądać", "Przyszły", "ty"],
-
-  ["czytać", "będzie czytać", "Przyszły", "on"],
-  ["pisać", "będzie pisać", "Przyszły", "on"],
-  ["gotować", "będzie gotować", "Przyszły", "on"],
-  ["sprzątać", "będzie sprzątać", "Przyszły", "on"],
-  ["oglądać", "będzie oglądać", "Przyszły", "on"],
-
-  ["czytać", "będzie czytać", "Przyszły", "ona"],
-  ["pisać", "będzie pisać", "Przyszły", "ona"],
-  ["gotować", "będzie gotować", "Przyszły", "ona"],
-  ["sprzątać", "będzie sprzątać", "Przyszły", "ona"],
-  ["oglądać", "będzie oglądać", "Przyszły", "ona"],
-
-  ["czytać", "będziemy czytać", "Przyszły", "my"],
-  ["pisać", "będziemy pisać", "Przyszły", "my"],
-  ["gotować", "będziemy gotować", "Przyszły", "my"],
-  ["sprzątać", "będziemy sprzątać", "Przyszły", "my"],
-  ["oglądać", "będziemy oglądać", "Przyszły", "my"],
-
-  ["czytać", "będziecie czytać", "Przyszły", "wy"],
-  ["pisać", "będziecie pisać", "Przyszły", "wy"],
-  ["gotować", "będziecie gotować", "Przyszły", "wy"],
-  ["sprzątać", "będziecie sprzątać", "Przyszły", "wy"],
-  ["oglądać", "będziecie oglądać", "Przyszły", "wy"],
-
-  ["czytać", "będą czytać", "Przyszły", "oni"],
-  ["pisać", "będą pisać", "Przyszły", "oni"],
-  ["gotować", "będą gotować", "Przyszły", "oni"],
-  ["sprzątać", "będą sprzątać", "Przyszły", "oni"],
-  ["oglądać", "będą oglądać", "Przyszły", "oni"],
-
-  ["czytać", "będą czytać", "Przyszły", "one"],
-  ["pisać", "będą pisać", "Przyszły", "one"],
-  ["gotować", "będą gotować", "Przyszły", "one"],
-  ["sprzątać", "będą sprzątać", "Przyszły", "one"],
-  ["oglądać", "będą oglądać", "Przyszły", "one"],
+  ["починати", "będę zaczynać", "Przyszły", "ja"],
+  ["починати", "będziesz zaczynać", "Przyszły", "ty"],
+  ["починати", "będzie zaczynać", "Przyszły", "on"],
+  ["починати", "będzie zaczynać", "Przyszły", "ona"],
+  ["починати", "będziemy zaczynać", "Przyszły", "my"],
+  ["починати", "będziecie zaczynać", "Przyszły", "wy"],
+  ["починати", "będą zaczynać", "Przyszły", "oni"],
+  ["починати", "będą zaczynać", "Przyszły", "one"],
 ];
-
 
     function shuffleArray(array) {
       for (let i = array.length - 1; i > 0; i--) {
@@ -244,7 +153,7 @@ const tasks = [
     let currentIndex = 0;
 
     function updateTaskTitle(infinitive, tense, pronoun, correctForm) {
-      let label = `${infinitive}" у ${tense.toLowerCase()} часі для `;
+      let label = `${infinitive} у ${tense.toLowerCase()} часі для `;
       let genderInfo = "";
 
       if (tense === "Przeszły") {
@@ -276,23 +185,20 @@ const tasks = [
 
     function nextWord() {
       currentIndex++;
-
       if (currentIndex >= tasks.length) {
-        document.getElementById("task").innerHTML = `Вправа завершена ✅`;
+        document.getElementById("task").innerHTML = "Koniec ćwiczenia! 🎉";
         document.getElementById("userInput").style.display = "none";
         document.getElementById("checkBtn").style.display = "none";
         document.getElementById("nextBtn").style.display = "none";
-        document.getElementById("feedback").textContent = "Молодець!";
-        document.getElementById("feedback").className = "result correct";
-        return;
+        document.getElementById("feedback").textContent = "";
+      } else {
+        const [infinitive, correctForm, tense, pronoun] = tasks[currentIndex];
+        document.getElementById("userInput").value = "";
+        document.getElementById("feedback").textContent = "";
+        document.getElementById("checkBtn").style.display = "inline-block";
+        document.getElementById("nextBtn").style.display = "none";
+        updateTaskTitle(infinitive, tense, pronoun, correctForm);
       }
-
-      const [infinitive, correctForm, tense, pronoun] = tasks[currentIndex];
-      document.getElementById("userInput").value = "";
-      document.getElementById("feedback").textContent = "";
-      document.getElementById("checkBtn").style.display = "inline-block";
-      document.getElementById("nextBtn").style.display = "none";
-      updateTaskTitle(infinitive, tense, pronoun, correctForm);
     }
 
     window.onload = () => {
