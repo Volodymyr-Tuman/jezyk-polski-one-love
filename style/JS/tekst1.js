@@ -1,15 +1,11 @@
 const correctAnswers = {
-  q1: "b", // Johannes Gutenberg
-  q2: "c", // W Chinach
-  q3: "b", // Biblia
-  q4: "c", // Ułatwił dostęp do wiedzy
-  q5: "b", // Pozwolił szybko rozpowszechniać nowe idee
-  q6: "c", // Książki, gazety, ulotki, podręczniki
-  q7: "c", // Druk offsetowy i rotacyjny
-  q8: "c", // Ułatwił przekazywanie informacji i wiedzy
-  q9: "a", // Druk cyfrowy i 3D
-  q10: "b" // Rozwój nowoczesnego społeczeństwa opartego na wiedzy
+  q1: "b",
+  q2: "b",
+  q3: "b",
+  q4: "a",
+  q5: "b"
 };
+
 
 
     function checkAnswers() {
