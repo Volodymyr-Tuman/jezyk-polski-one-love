@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zgadnij co to!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #f0f0f0;
+        }
+        img {
+            max-width: 300px;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 20px;
+            transition: transform 0.3s, max-width 0.3s;
+            border-style: inset;
+        }
+
+        img:hover{
+            transform: scale(1.05);
+            max-width: 315px;
+            border-style: outset;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin: 5px;
+            border-radius: 20px;
+
+        }
+
+        button{
+            padding: 10px;
+            font-size: 16px;
+            margin: 5px;
+            border-radius: 20px;
+            transition: background-color .3s, transform .3s;
+        }
+        button:hover{
+            transform: scale(1.1);
+            background-color: rgb(183, 183, 183);
+            font-style: italic;
+        }
+
+        #feedback {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        #nextButton {
+            display: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Zgadnij co to po polsku!</h1>
+<img id="image" src="kotek.jpg" alt="Obrazek">
+<br>
+<input type="text" id="answer" placeholder="Wpisz nazwę po polsku">
+<button onclick="checkAnswer()">Sprawdź</button>
+
+<div id="feedback"></div>
+<button id="nextButton" onclick="nextImage()">Dalej</button>
+
+<script>
+const items = [
+    // Група 1
+    { img: 'https://cdn.pixabay.com/photo/2013/05/14/18/25/frog-111179_1280.jpg', answer: 'żaba' },
+    { img: 'https://cdn.pixabay.com/photo/2019/08/06/10/40/fuchs-4388014_1280.jpg', answer: 'lis' },
+    { img: 'https://cdn.pixabay.com/photo/2022/07/30/16/39/roe-deer-7354145_1280.jpg', answer: 'sarna' },
+    { img: 'https://cdn.pixabay.com/photo/2025/01/12/15/25/tortoise-9328571_1280.jpg', answer: 'żółw' },
+    { img: 'https://cdn.pixabay.com/photo/2022/06/10/03/59/lynx-7253623_1280.jpg', answer: 'ryś' },
+    { img: 'https://cdn.pixabay.com/photo/2016/03/20/13/46/bat-1268650_1280.jpg', answer: 'nietoperz' },
+    { img: 'https://cdn.pixabay.com/photo/2017/01/11/20/03/wolf-1972762_1280.jpg', answer: 'wilk' },
+    { img: 'https://cdn.pixabay.com/photo/2018/09/25/21/54/hedgehog-3703244_1280.jpg', answer: 'jeż' },
+    { img: 'https://cdn.pixabay.com/photo/2022/02/01/08/39/swan-6985724_1280.jpg', answer: 'łabędź' },
+    { img: 'https://cdn.pixabay.com/photo/2013/11/01/11/13/dolphin-203875_1280.jpg', answer: 'delfin' },
+
+    // Група 2
+    { img: 'https://cdn.pixabay.com/photo/2022/07/23/18/41/electric-scooters-7340440_1280.jpg', answer: 'hulajnoga' },
+    { img: 'https://cdn.pixabay.com/photo/2020/02/03/03/04/kayak-4814610_1280.jpg', answer: 'kajak' },
+    { img: 'https://cdn.pixabay.com/photo/2017/05/28/07/40/isolated-2350271_1280.png', answer: 'wóz' },
+    { img: 'https://cdn.pixabay.com/photo/2014/03/06/21/47/already-281231_1280.jpg', answer: 'but' },
+    { img: 'https://cdn.pixabay.com/photo/2020/10/17/14/17/zeppelin-5662247_1280.png', answer: 'sterowiec' },
+    { img: 'https://cdn.pixabay.com/photo/2021/09/14/17/07/scooter-6624573_1280.jpg', answer: 'skuter' },
+    { img: 'https://cdn.pixabay.com/photo/2013/06/08/04/17/ferry-boat-123059_1280.jpg', answer: 'prom' },
+
+    // Група 3
+    { img: 'https://cdn.pixabay.com/photo/2015/08/12/19/41/plum-886224_1280.jpg', answer: 'śliwka' },
+    { img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSSsd87Rcb2gH9rDlXbMYOcpCCEN1z6NlwTfjH8WufOpq1L9TQerxdLE4-sBUwDSkVio27Tsg34eGlgiwlpJZiq46lcoDWmCNWRHOS-_3dlg', answer: 'bułka' },
+    { img: 'https://cdn.pixabay.com/photo/2016/08/03/01/09/carrot-1565597_1280.jpg', answer: 'marchewka' },
+    { img: 'https://cdn.pixabay.com/photo/2023/07/28/14/40/red-grape-8155378_1280.jpg', answer: 'winogrono' },
+    { img: 'https://cdn.pixabay.com/photo/2020/07/31/15/40/cucumber-5453364_1280.jpg', answer: 'ogórek' },
+    { img: 'https://cdn.pixabay.com/photo/2014/11/30/07/16/watermelon-551235_1280.jpg', answer: 'arbuz' },
+    { img: 'https://cdn.pixabay.com/photo/2017/06/16/14/35/lemon-2409365_1280.jpg', answer: 'cytryna' },
+    { img: 'https://cdn.pixabay.com/photo/2017/03/31/18/02/strawberry-dessert-2191973_1280.jpg', answer: 'jogurt' },
+    { img: 'https://cdn.pixabay.com/photo/2015/03/04/09/55/walnut-658569_1280.jpg', answer: 'orzech' },
+    { img: 'https://cdn.pixabay.com/photo/2014/12/30/03/08/peach-583485_1280.jpg', answer: 'brzoskwinia' },
+
+    // Група 4
+    { img: 'https://cdn.pixabay.com/photo/2017/11/27/07/02/time-2980690_1280.jpg', answer: 'budzik' },
+    { img: 'https://cdn.pixabay.com/photo/2023/06/22/16/34/man-8081871_1280.jpg', answer: 'gazeta' },
+    { img: 'https://cdn.pixabay.com/photo/2013/07/13/10/05/baseball-cap-156528_1280.png', answer: 'czapka' },
+    { img: 'https://cdn.pixabay.com/photo/2015/02/02/15/28/bar-621033_1280.jpg', answer: 'tablet' },
+    { img: 'https://cdn.pixabay.com/photo/2016/11/21/11/32/audio-1844798_1280.jpg', answer: 'mikrofon' },
+    { img: 'https://cdn.pixabay.com/photo/2023/01/08/15/35/thermos-7705565_1280.jpg', answer: 'termos' },
+    { img: 'https://cdn.pixabay.com/photo/2016/11/19/15/50/chair-1840011_1280.jpg', answer: 'fotel' },
+    { img: 'https://cdn.pixabay.com/photo/2023/05/30/16/42/backpack-8029117_1280.png', answer: 'plecak' },
+    { img: 'https://cdn.pixabay.com/photo/2016/11/18/17/20/living-room-1835923_1280.jpg', answer: 'kanapa' },
+    { img: 'https://cdn.pixabay.com/photo/2016/11/29/03/50/light-bulb-1867166_1280.jpg', answer: 'żarówka' }
+];
+
+
+// Функція перемішування масиву (Fisher-Yates)
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+shuffle(items); // Перемішуємо картинки перед грою
+
+let currentIndex = 0;
+
+function loadImage() {
+    document.getElementById('image').style.display = 'inline'; // На випадок, якщо ховали
+    document.getElementById('answer').style.display = 'inline';
+    document.getElementById('image').src = items[currentIndex].img;
+    document.getElementById('answer').value = '';
+    document.getElementById('feedback').textContent = '';
+    document.getElementById('nextButton').style.display = 'none';
+}
+
+function checkAnswer() {
+    const userAnswer = document.getElementById('answer').value.trim().toLowerCase();
+    if (userAnswer === items[currentIndex].answer.toLowerCase()) {
+        document.getElementById('feedback').textContent = 'Brawo! Poprawna odpowiedź!';
+        if (currentIndex === items.length - 1) {
+            document.getElementById('nextButton').textContent = 'Zakończ';
+        } else {
+            document.getElementById('nextButton').textContent = 'Dalej';
+        }
+        document.getElementById('nextButton').style.display = 'inline-block';
+    } else {
+        document.getElementById('feedback').textContent = 'Niestety, spróbuj ponownie.';
+    }
+}
+
+function nextImage() {
+    if (currentIndex === items.length - 1) {
+        document.getElementById('feedback').textContent = 'Gratulacje! Wykonałeś wszystkie zadania!';
+        document.getElementById('nextButton').style.display = 'none';
+        document.getElementById('image').style.display = 'none';
+        document.getElementById('answer').style.display = 'none';
+    } else {
+        currentIndex++;
+        loadImage();
+        document.getElementById('nextButton').textContent = 'Dalej';
+    }
+}
+
+loadImage();
+</script>
+
+
+
+</body>
+</html>
