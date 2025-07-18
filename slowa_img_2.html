@@ -146,8 +146,7 @@ function loadImage() {
 function checkAnswer() {
     const userAnswer = document.getElementById('answer').value.trim().toLowerCase();
     if (userAnswer === items[currentIndex].answer.toLowerCase()) {
-        document.getElementById('feedback').textContent = '✅Brawo! Poprawna odpowiedź!
-        ';
+        document.getElementById('feedback').textContent = '✅Brawo! Poprawna odpowiedź';
         if (currentIndex === items.length - 1) {
             document.getElementById('nextButton').textContent = 'Zakończ';
         } else {
