@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zgadnij co to!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #f0f0f0;
+        }
+        img {
+            max-width: 300px;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 20px;
+            transition: transform 0.3s, max-width 0.3s;
+            border-style: inset;
+        }
+
+        img:hover{
+            transform: scale(1.05);
+            max-width: 315px;
+            border-style: outset;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin: 5px;
+            border-radius: 20px;
+
+        }
+
+        button{
+            padding: 10px;
+            font-size: 16px;
+            margin: 5px;
+            border-radius: 20px;
+            transition: background-color .3s, transform .3s;
+        }
+        button:hover{
+            transform: scale(1.1);
+            background-color: rgb(183, 183, 183);
+            font-style: italic;
+        }
+
+        #feedback {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        #nextButton {
+            display: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .brawo{
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Zgadnij co to po polsku!</h1>
+<img id="image" src="kotek.jpg" alt="Obrazek">
+<br>
+<input type="text" id="answer" placeholder="Wpisz nazwę po polsku">
+<button onclick="checkAnswer()">Sprawdź</button>
+
+<div id="feedback"></div>
+<button id="nextButton" onclick="nextImage()">Dalej</button>
+
+<script>
+const items = [
+    // Zwierzęta
+    { img: 'https://cdn.pixabay.com/photo/2019/12/01/07/41/lechwe-4664851_1280.jpg', answer: 'antylopa' },
+    { img: 'https://cdn.pixabay.com/photo/2020/03/03/06/40/flamingo-4897656_1280.jpg', answer: 'flaming' },
+    { img: 'https://cdn.pixabay.com/photo/2022/12/05/17/41/lama-7637266_1280.jpg', answer: 'lama' },
+    { img: 'https://cdn.pixabay.com/photo/2024/02/02/14/47/ai-generated-8548354_1280.png', answer: 'jenot' },
+    { img: 'https://cdn.pixabay.com/photo/2022/05/01/12/36/great-spotted-woodpecker-7167422_1280.jpg', answer: 'dzięcioł' },
+    { img: 'https://cdn.pixabay.com/photo/2023/02/15/04/42/vector-gorilla-7790910_1280.png', answer: 'goryl' },
+    { img: 'https://cdn.pixabay.com/photo/2019/03/18/04/53/bird-4062359_1280.jpg', answer: 'gołąb' },
+    { img: 'https://cdn.pixabay.com/photo/2015/07/10/09/12/ostriches-838976_1280.jpg', answer: 'struś' }, // замість karp
+
+    // Pojazdy
+    { img: 'https://cdn.pixabay.com/photo/2022/09/22/19/01/off-road-car-7472941_1280.jpg', answer: 'quad' },
+    { img: 'https://cdn.pixabay.com/photo/2020/03/21/14/04/fire-4954054_1280.jpg', answer: 'straż pożarna' },
+    { img: 'https://cdn.pixabay.com/photo/2015/10/25/08/24/ambulance-1005433_1280.jpg', answer: 'karetka' },
+    { img: 'https://cdn.pixabay.com/photo/2019/08/15/19/52/police-4408788_1280.jpg', answer: 'policja' },
+    { img: 'https://cdn.pixabay.com/photo/2016/09/08/11/37/powerboat-1653985_1280.jpg', answer: 'motorówka' },
+    { img: 'https://cdn.pixabay.com/photo/2025/02/15/10/25/boat-9408526_1280.jpg', answer: 'kanoe' },
+    { img: 'https://cdn.pixabay.com/photo/2021/09/28/15/20/cab-6664787_1280.png', answer: 'taksówka' },
+    { img: 'https://cdn.pixabay.com/photo/2013/11/14/20/02/paper-model-210622_1280.jpg', answer: 'pociąg' },
+    { img: 'https://cdn.pixabay.com/photo/2023/09/21/07/47/helicopter-8266194_1280.jpg', answer: 'śmigłowiec' }, // замість melex
+
+    // Jedzenie
+    { img: 'https://www.pakomarket.pl/wp-content/uploads/KAMIS-Musztarda-Sarepska-185g-2.jpg', answer: 'musztarda' },
+    { img: 'https://cdn.pixabay.com/photo/2020/05/29/19/33/rice-5236375_1280.jpg', answer: 'ryż' },
+    { img: 'https://cdn.pixabay.com/photo/2016/04/02/15/13/noodle-1303003_1280.jpg', answer: 'makaron' },
+    { img: 'https://cdn.pixabay.com/photo/2021/12/08/16/19/peas-6856165_1280.jpg', answer: 'groszek' },
+    { img: 'https://cdn.pixabay.com/photo/2018/06/22/13/52/beetroot-3490809_1280.jpg', answer: 'burak' },
+    { img: 'https://cdn.pixabay.com/photo/2016/11/29/13/55/agriculture-1870017_1280.jpg', answer: 'rzodkiewka' },
+
+    // Przedmioty codziennego użytku
+    { img: 'https://cdn.pixabay.com/photo/2025/07/12/16/34/umbrella-9710962_1280.jpg', answer: 'parasol' },
+    { img: 'https://cdn.pixabay.com/photo/2020/03/04/05/57/key-4900643_1280.jpg', answer: 'klucz' },
+    { img: 'https://cdn.pixabay.com/photo/2022/12/18/03/16/tactical-flashlight-7662681_1280.jpg', answer: 'latarka' }
+];
+
+
+// Функція перемішування масиву (Fisher-Yates)
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+shuffle(items); // Перемішуємо картинки перед грою
+
+let currentIndex = 0;
+
+function loadImage() {
+    document.getElementById('image').style.display = 'inline'; // На випадок, якщо ховали
+    document.getElementById('answer').style.display = 'inline';
+    document.getElementById('image').src = items[currentIndex].img;
+    document.getElementById('answer').value = '';
+    document.getElementById('feedback').textContent = '';
+    document.getElementById('nextButton').style.display = 'none';
+}
+
+function checkAnswer() {
+    const userAnswer = document.getElementById('answer').value.trim().toLowerCase();
+    if (userAnswer === items[currentIndex].answer.toLowerCase()) {
+        document.getElementById('feedback').textContent = '✅Brawo! Poprawna odpowiedź!';
+        if (currentIndex === items.length - 1) {
+            document.getElementById('nextButton').textContent = 'Zakończ';
+        } else {
+            document.getElementById('nextButton').textContent = 'Dalej';
+        }
+        document.getElementById('nextButton').style.display = 'inline-block';
+    } else {
+        document.getElementById('feedback').textContent = '❌Niestety, spróbuj ponownie.';
+    }
+}
+
+function nextImage() {
+    if (currentIndex === items.length - 1) {
+        document.getElementById('feedback').textContent = 'Gratulacje! Wykonałeś wszystkie zadania!🎉';
+        document.getElementById('nextButton').style.display = 'none';
+        document.getElementById('image').style.display = 'none';
+        document.getElementById('answer').style.display = 'none';
+    } else {
+        currentIndex++;
+        loadImage();
+        document.getElementById('nextButton').textContent = 'Dalej';
+    }
+}
+
+loadImage();
+</script>
+
+
+
+</body>
+</html>
