@@ -1,15 +1,16 @@
 const correctAnswers = {
-  q1: "d",
-  q2: "c",
-  q3: "d",
-  q4: "c",
-  q5: "b",
-  q6: "c",
-  q7: "c",
-  q8: "b",
-  q9: "b",
-  q10: "b"
+  q1: "b", // Kraków
+  q2: "c", // Trzy
+  q3: "b", // Oscypek
+  q4: "c", // Kuchnia nowoczesna i pokazy live cooking
+  q5: "b", // Dekorować pierniki
+  q6: "c", // Folkowa
+  q7: "b", // Historia polskich potraw i ograniczanie marnowania żywności
+  q8: "a", // Zapach pieczonego chleba i racuchów
+  q9: "a", // Rywalizacja o najlepszy bigos
+  q10: "b" // Bo można zobaczyć Kraków i poznać polską kuchnię
 };
+
 
 
 
@@ -31,3 +32,4 @@ const correctAnswers = {
         question.className = "question " + (answeredCorrectly ? "correct" : "incorrect");
       }
     }
+
