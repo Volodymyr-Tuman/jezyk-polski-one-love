@@ -1,4 +1,4 @@
-const newUkrainianSentences = [
+const ukrainianSentences = [
   "Я зварила борщ",
   "Вона намалювала картину",
   "Я погладила сорочку",
@@ -51,7 +51,7 @@ const newUkrainianSentences = [
   "Вона накрила на сніданок"
 ];
 
-const newPolishSentences = [
+const polishSentences = [
   "Ugotowałam barszcz",
   "Namalowała obraz",
   "Wyprasowałam koszulę",
@@ -170,5 +170,6 @@ const newPolishSentences = [
       }
     }
   });
+
 
 
