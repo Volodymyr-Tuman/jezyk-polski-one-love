@@ -1,4 +1,4 @@
-const ukrainianSentencesShort = [
+const ukrainianSentences = [
   "Я читаю книжку",
   "Вона пише лист",
   "Я малюю кота",
@@ -51,7 +51,7 @@ const ukrainianSentencesShort = [
   "Вона носить пальто"
 ];
 
-const polishSentencesShort = [
+const polishSentences = [
   "Czytam książkę",
   "Pisze list",
   "Rysuję kota",
@@ -171,6 +171,7 @@ const polishSentencesShort = [
       }
     }
   });
+
 
 
 
